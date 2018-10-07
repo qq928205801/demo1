@@ -2,7 +2,6 @@ package com.yzt.zhmp.service.impl;
 
 import com.yzt.zhmp.beans.*;
 import com.yzt.zhmp.dao.BackstageDao;
-import com.yzt.zhmp.resultVO.UserVO;
 import com.yzt.zhmp.service.BackstageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

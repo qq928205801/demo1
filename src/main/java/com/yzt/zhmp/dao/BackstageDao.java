@@ -1,7 +1,6 @@
 package com.yzt.zhmp.dao;
 
 import com.yzt.zhmp.beans.*;
-import com.yzt.zhmp.resultVO.UserVO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Component;
