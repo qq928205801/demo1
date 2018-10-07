@@ -40,7 +40,12 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
     @Override
-    public String selectFileIdByUserid(int userid) {
+    public  List<String> selectFileIdByUserid(int userid) {
         return userLoginDao.selectFileIdByUserid(userid);
+    }
+
+    @Override
+    public List<String> selectBuidbyUserId(int userid) {
+        return userLoginDao.selectBuidbyUserId(userid);
     }
 }

@@ -42,7 +42,7 @@ public class SystemController {
 
         java.lang.System.out.println(cbuilding.getIfOpen());
         modelAndView.addObject("building",cbuilding);
-        modelAndView.setViewName("WEB-INF/a/newsystem");
+        modelAndView.setViewName("WEB-INF/a/system02");
         return modelAndView;
     }
 

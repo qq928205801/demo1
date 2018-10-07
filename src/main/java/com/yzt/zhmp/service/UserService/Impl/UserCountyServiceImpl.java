@@ -12,6 +12,6 @@ public class UserCountyServiceImpl implements UserCountyService {
     private UserCountyDao userCountyDao;
     @Override
     public int addUserCounty(UserCounty userCounty) {
-        return userCountyDao.insertUserCounty(userCounty);
+        return userCountyDao.insertUserCounty(userCounty) ;
     }
 }

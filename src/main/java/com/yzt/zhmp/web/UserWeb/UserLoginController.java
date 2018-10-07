@@ -6,6 +6,7 @@ import com.yzt.zhmp.service.CollectionSystemService;
 import com.yzt.zhmp.service.SystemService;
 import com.yzt.zhmp.service.UserService.UserLoginService;
 import com.yzt.zhmp.utils.MD5Utils;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,7 +79,7 @@ public class UserLoginController {
 
 
 
-    //登入查询用户角色返回首页
+    //磐安县登入查询用户角色返回首页
 
     @RequestMapping("/usersLogin")
     public ModelAndView usersLogin(String name, String password, HttpSession session){
@@ -107,7 +108,7 @@ public class UserLoginController {
         List<String> fileName=userLoginService.rolelogin(existUser.getUsrid());
         System.out.println(fileName);
         //查看用户角色id
-        String fildId=userLoginService.selectFileIdByUserid(existUser.getUsrid());
+        List<String> fildId=userLoginService.selectFileIdByUserid(existUser.getUsrid());
         System.out.println(fildId);
         session.setAttribute("fildId",fildId);
 
@@ -128,4 +129,58 @@ public class UserLoginController {
     }
 
 
+    //上饶市 公安登入查询用户角色返回首页
+
+    @RequestMapping("/shangraousersLogin")
+    public ModelAndView shangRaoUsersLogin(String name, String password, HttpSession session){
+        ModelAndView modelAndView=new ModelAndView();
+        User user=new User();
+        user.setPassword(MD5Utils.md5(password));
+        user.setName(name);
+
+
+        User existUser=userLoginService.login(user);
+        System.out.println(existUser);
+
+
+        if (existUser==null){
+            modelAndView.addObject("error","账号或密码错误");
+            //model.addAttribute("error","账号或密码错误");
+            modelAndView.setViewName("WEB-INF/login/login");
+            return modelAndView;
+        }
+
+        System.out.println(existUser.getUsrid());
+
+
+
+        //查看角色权限字段
+        List<String> fileName=userLoginService.rolelogin(existUser.getUsrid());
+        System.out.println(fileName);
+
+        //查看此用户是否有从建筑权限
+        List<String> buid=userLoginService.selectBuidbyUserId(existUser.getUsrid());
+        System.out.println(buid);
+
+        //查看用户角色id
+        List<String> fildId=userLoginService.selectFileIdByUserid(existUser.getUsrid());
+
+        System.out.println(fildId);
+        session.setAttribute("fildId",fildId);
+
+        //暂定为330727
+        List allList=systemService.selectAll("330727");
+        //  java.lang.System.out.println(allList);
+        modelAndView.addObject("allList",allList);
+        //显示农户信息
+        Cbuilding cbuilding=collectionSystemService.selectBuildingByid(17);
+        System.out.println(cbuilding.getIfOpen());
+        modelAndView.addObject("building",cbuilding);
+
+        session.setAttribute("existUser",existUser);
+        modelAndView.addObject("existUser",existUser);
+
+        modelAndView.setViewName("WEB-INF/a/system02");
+        return modelAndView;
+    }
 }
