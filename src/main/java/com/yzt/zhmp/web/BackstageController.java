@@ -1,7 +1,6 @@
 package com.yzt.zhmp.web;
 
 import com.yzt.zhmp.beans.*;
-import com.yzt.zhmp.resultVO.UserVO;
 import com.yzt.zhmp.service.BackstageService;
 import com.yzt.zhmp.service.CollectionSystemService;
 import com.yzt.zhmp.utils.MD5Utils;
