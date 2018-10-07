@@ -14,6 +14,12 @@ public class Transfer {
     public String login(){
         return "WEB-INF/login/login";
     }
+
+    @RequestMapping("ShangRaologin")
+    public String ShangRaologin(){
+        return "WEB-INF/login/ShangRaologin";
+    }
+
     //后台管理中转
     //@RequestMapping("navigation")
     //public String navigation(){

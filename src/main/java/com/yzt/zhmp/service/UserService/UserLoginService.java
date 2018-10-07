@@ -28,6 +28,9 @@ public interface UserLoginService {
 
 
     //查询登入用户角色
-    public String selectFileIdByUserid(int userid);
+    public  List<String> selectFileIdByUserid(int userid);
+    //查询用户所拥有的建筑
+    public List<String> selectBuidbyUserId(int userid);
+
 }
 
