@@ -1,0 +1,258 @@
+<?xml version="1.0" standalone="no"?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>住户查询</title>
+    <link rel="stylesheet" type="text/css" href="/style/weui.css"/>
+    <link rel="stylesheet" type="text/css" href="/style/example.css"/>
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+</head>
+<body ontouchstart>
+<div class="page">
+    <div class="svg-container">
+        <svg width="1160.0" id="svgImg" height="540.0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polygon id="element0" class="svg_item" points="150,0 150,80 270,80 270,0 " width="120" height="80"
+                     data-field="1-401,李云;" data-house="243" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element1" class="svg_item" points="270,0 270,80 390,80 390,0 " width="120" height="80"
+                     data-field="1-402,李云;" data-house="244" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element2" class="svg_item" points="390,0 390,80 510,80 510,0 " width="120" height="80"
+                     data-field="1-403,李云;" data-house="245" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element3" class="svg_item" points="150,80 150,160 270,160 270,80 " width="120" height="80"
+                     data-field="1-301,李云;" data-house="240" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element4" class="svg_item" points="270,80 270,160 390,160 390,80 " width="120" height="80"
+                     data-field="1-302,李云;" data-house="241" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element5" class="svg_item" points="390,80 390,160 510,160 510,80 " width="120" height="80"
+                     data-field="1-303,李云;" data-house="242" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element6" class="svg_item" points="150,160 150,240 270,240 270,160 " width="120" height="80"
+                     data-field="1-201,李梦;" data-house="237" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element7" class="svg_item" points="270,160 270,240 390,240 390,160 " width="120" height="80"
+                     data-field="1-202,李梦;" data-house="238" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element8" class="svg_item" points="390,160 390,240 510,240 510,160 " width="120" height="80"
+                     data-field="1-203,李云;" data-house="239" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element9" class="svg_item" points="150,240 150,320 270,320 270,240 " width="120" height="80"
+                     data-field="1-101,李梦;" data-house="234" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element10" class="svg_item" points="270,240 270,320 390,320 390,240 " width="120" height="80"
+                     data-field="1-102,李梦;" data-house="235" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element11" class="svg_item" points="390,240 390,320 510,320 510,240 " width="120" height="80"
+                     data-field="1-103,李梦;" data-house="236" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element12" class="svg_item" points="510,80 510,160 630,160 630,80 " width="120" height="80"
+                     data-field="2-301,李云;" data-house="256" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element13" class="svg_item" points="630,80 630,160 750,160 750,80 " width="120" height="80"
+                     data-field="2-302,李云;" data-house="257" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element14" class="svg_item" points="750,80 750,160 870,160 870,80 " width="120" height="80"
+                     data-field="2-303,李云;" data-house="258" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element15" class="svg_item" points="870,80 870,160 990,160 990,80 " width="120" height="80"
+                     data-field="2-304,李云;" data-house="259" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element16" class="svg_item" points="990,80 990,160 1110,160 1110,80 " width="120" height="80"
+                     data-field="2-305,李云;" data-house="260" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element17" class="svg_item" points="510,160 510,240 630,240 630,160 " width="120" height="80"
+                     data-field="2-201,李云;" data-house="251" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element18" class="svg_item" points="630,160 630,240 750,240 750,160 " width="120" height="80"
+                     data-field="2-202,李云;" data-house="252" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element19" class="svg_item" points="750,160 750,240 870,240 870,160 " width="120" height="80"
+                     data-field="2-203,李云;" data-house="253" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element20" class="svg_item" points="870,160 870,240 990,240 990,160 " width="120" height="80"
+                     data-field="2-204,李云;" data-house="254" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element21" class="svg_item" points="990,160 990,240 1110,240 1110,160 " width="120" height="80"
+                     data-field="2-205,李云;" data-house="255" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element22" class="svg_item" points="510,240 510,320 630,320 630,240 " width="120" height="80"
+                     data-field="2-101,李云;" data-house="246" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element23" class="svg_item" points="630,240 630,320 750,320 750,240 " width="120" height="80"
+                     data-field="2-102,李云;" data-house="247" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element24" class="svg_item" points="750,240 750,320 870,320 870,240 " width="120" height="80"
+                     data-field="2-103,李云;" data-house="248" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element25" class="svg_item" points="870,240 870,320 990,320 990,240 " width="120" height="80"
+                     data-field="2-104,李云;" data-house="249" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <polygon id="element26" class="svg_item" points="990,240 990,320 1110,320 1110,240 " width="120" height="80"
+                     data-field="2-105,李云;" data-house="250" style="fill:rgba(94,193,240,1);stroke:rgb(155,155,155);stroke-width:5;
+ fill-opacity:0.1;stroke-opacity:0.9" onmouseover="svgOn(this)" onmouseout="svgOut(this)" onclick="select(this)"/>
+            <text class="element9" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="175" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-101
+            </text>
+            <text class="element10" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="295" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-102
+            </text>
+            <text class="element11" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="415" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-103
+            </text>
+            <text class="element6" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="175" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-201
+            </text>
+            <text class="element7" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="295" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-202
+            </text>
+            <text class="element8" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="415" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-203
+            </text>
+            <text class="element3" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="175" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-301
+            </text>
+            <text class="element4" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="295" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-302
+            </text>
+            <text class="element5" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="415" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-303
+            </text>
+            <text class="element0" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="175" y="52" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-4-1
+            </text>
+            <text class="element1" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="295" y="52" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-402
+            </text>
+            <text class="element2" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="415" y="52" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">1-403
+            </text>
+            <text class="element22" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="535" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-101
+            </text>
+            <text class="element23" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="655" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-102
+            </text>
+            <text class="element24" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="775" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-103
+            </text>
+            <text class="element25" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="895" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-104
+            </text>
+            <text class="element26" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="1015" y="292" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-105
+            </text>
+            <text class="element17" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="535" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-201
+            </text>
+            <text class="element18" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="655" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-202
+            </text>
+            <text class="element19" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="775" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-203
+            </text>
+            <text class="element20" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="895" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-204
+            </text>
+            <text class="element21" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="1015" y="212" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-205
+            </text>
+            <text class="element12" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="535" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-301
+            </text>
+            <text class="element13" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="655" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-302
+            </text>
+            <text class="element14" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="775" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-303
+            </text>
+            <text class="element15" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="895" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-304
+            </text>
+            <text class="element16" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="1015" y="132" width="200" height="30" onmouseover="svgOn(this)" onclick="select(this)">2-305
+            </text>
+            <text class="floor_num" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="50" y="52" width="100" height="30">4 楼
+            </text>
+            <text class="floor_num" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="50" y="132" width="100" height="30">3 楼
+            </text>
+            <text class="floor_num" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="50" y="212" width="100" height="30">2 楼
+            </text>
+            <text class="floor_num" style="fill:black;" font-size="30" font-family="LiSu "
+                  x="50" y="292" width="100" height="30">1 楼
+            </text>
+            <path d="M160 340 L500 340 Z" style="fill:white;stroke:red;stroke-width:2"/>
+            <text class="floor_num" style="fill:black;" font-size="45" font-family="LiSu "
+                  x="280" y="412" width="100" height="30">1 单元
+            </text>
+            <path d="M520 340 L1100 340 Z" style="fill:white;stroke:red;stroke-width:2"/>
+            <text class="floor_num" style="fill:black;" font-size="45" font-family="LiSu "
+                  x="760" y="412" width="100" height="30">2 单元
+            </text>
+        </svg>
+    </div>
+    <div class="pageContent" id="tpl_feedback">
+        <div class="page__bd page__bd_spacing">
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">门牌号</label>
+                        <em class="weui-form-preview__value" id="doorPlate"></em>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">户主</label>
+                        <span class="weui-form-preview__value"id="househost"></span>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">联系户主</a>
+                </div>
+            </div>
+            <br>
+            <br><br><br><br><br><br>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function select(obj){
+        if(obj.nodeName=="text"){
+            return false;
+        }
+        var info=obj.attributes[5].nodeValue.replace(";","").split(",");
+        var doorPlate=info[0];
+        var househost=info[1];
+        $("#doorPlate").text(doorPlate);
+        $("#househost").text(househost);
+    }
+
+    function svgOn(obj){
+        if(obj.nodeName=="text"){
+            return false;
+        }
+        var info=obj.attributes[5].nodeValue.replace(";","").split(",");
+        var doorPlate=info[0];
+        var househost=info[1];
+        $("#doorPlate").text(doorPlate);
+        $("#househost").text(househost);
+    }
+
+    function svgOut(obj){
+        if(obj.nodeName=="text"){
+            return false;
+        }
+        var info=obj.attributes[5].nodeValue.replace(";","").split(",");
+        var doorPlate=info[0];
+        var househost=info[1];
+        $("#doorPlate").text(doorPlate);
+        $("#househost").text(househost);
+    }
+
+
+</script>
