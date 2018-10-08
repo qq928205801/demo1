@@ -33,7 +33,7 @@ public class SystemController {
 
 
         request.getSession().invalidate();
-        String discode="361100";
+        String discode="330727";
         //显示政府服务分类
         List<String> deptName=systemService.selectDeptNamebuDisCode(discode);
 
@@ -47,7 +47,7 @@ public class SystemController {
 
         java.lang.System.out.println(cbuilding.getIfOpen());
         modelAndView.addObject("building",cbuilding);
-        modelAndView.setViewName("WEB-INF/a/system02");
+        modelAndView.setViewName("WEB-INF/a/newsystem");
         return modelAndView;
     }
 
