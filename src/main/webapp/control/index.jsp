@@ -46,14 +46,14 @@
                                 <i class="layui-icon">&#xe6c6;</i><span> 行政用户列表</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'deptUserList.jsp',icon:'&#xe6c6;',title:'部门用户列表',id:'9'}">
+                            <a href="javascript:;" kit-target data-options="{url:'deptUserList.jsp',icon:'&#xe6c6;',title:'部门用户列表',id:'2'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 部门用户列表</span></a>
                         </dd>
                         </c:if>
 
                         <c:if test="${empty msg}">
                         <dd>
-                            <a href="javascript:;" data-url="form.jsp" data-icon="fa-user" data-title="新建行政管理账号" kit-target data-id='2'><i class="fa fa-user" aria-hidden="true"></i><span> 新建行政管理账号</span></a>
+                            <a href="javascript:;" data-url="form.jsp" data-icon="fa-user" data-title="新建行政管理账号" kit-target data-id='3'><i class="fa fa-user" aria-hidden="true"></i><span> 新建行政管理账号</span></a>
                         </dd>
                         </c:if>
                         <c:if test="${dis==0}">
@@ -64,15 +64,15 @@
 
                         <c:if test="${dis==1}">
                             <dd>
-                                <a href="javascript:;" data-url="formUpadteXianqu" data-icon="&#xe614;" data-title="修改当前行政区信息" kit-target data-id='4'><i class="layui-icon">&#xe614;</i><span> 修改当前行政区信息</span></a>
+                                <a href="javascript:;" data-url="formUpadteXianqu" data-icon="&#xe614;" data-title="修改当前行政区信息" kit-target data-id='5'><i class="layui-icon">&#xe614;</i><span> 修改当前行政区信息</span></a>
                             </dd>
                         </c:if>
                         <c:if test="${msg=='村'}">
                             <dd>
-                                <a href="javascript:;" data-url="formNonghu.jsp" data-icon="&#xe628;" data-title="添加农户信息" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span> 添加农户信息</span></a>
+                                <a href="javascript:;" data-url="formNonghu.jsp" data-icon="&#xe628;" data-title="添加农户信息" kit-target data-id='6'><i class="layui-icon">&#xe628;</i><span> 添加农户信息</span></a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" kit-target data-options="{url:'buildingList.jsp',icon:'&#xe6c6;',title:'修改门牌信息',id:'5'}">
+                                <a href="javascript:;" kit-target data-options="{url:'buildingList.jsp',icon:'&#xe6c6;',title:'修改门牌信息',id:'7'}">
                                     <i class="layui-icon">&#xe6c6;</i><span> 修改门牌信息</span></a>
                             </dd>
                         </c:if>
