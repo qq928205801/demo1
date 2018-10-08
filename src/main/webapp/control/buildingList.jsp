@@ -88,7 +88,7 @@
 
             } else if(obj.event === 'edit'){
 
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                // layer.alert('编辑行：<br>'+ JSON.stringify(data))
                 layer.open({
                     type: 1
                     ,title: false //不显示标题栏

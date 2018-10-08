@@ -34,6 +34,13 @@ public interface SystemDao {
     @InsertProvider(type = OrgProvider.class,method = "addnewFeatures")
     public int addnewFeatures(System system);
 
+
+    //查询首页显示服务有几大类
+    @Select("SELECT deptName FROM d_disDept WHERE disCode=#{disCode}")
+    public List<String> selectDeptNamebuDisCode(String disCode);
+
+
+
     class OrgProvider{
         //开启功能
         public String addOrgmicroservice(Map map){

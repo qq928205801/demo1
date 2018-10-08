@@ -16,6 +16,11 @@ public interface SystemService {
     //查询公安模块
     public List selectPliceSystem();
 
+
+    //查询首页显示服务有几大类
+    public List<String> selectDeptNamebuDisCode(String disCode);
+
+
     //根据传入县区码查询部门功能模块
     public List<System> selectAll(String code);
 }

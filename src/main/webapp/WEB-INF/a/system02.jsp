@@ -46,19 +46,6 @@
             border: 0;
             background-color: white;
         }
-        .poiname {
-            font-family: "Microsoft Yahei";
-            padding: 6px 0;
-            text-indent: 10px;
-            color: #333;
-            font-size: 15px;
-            max-width: 292px;
-            height: 20px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            font-weight: 400;
-        }
     </style>
 </head>
 <body ontouchstart>
@@ -73,8 +60,8 @@
                             <img class="weui-media-box__thumb" src="/static/images/menpai/2c1c1576b4fc5268fd89f17288d1b868.gif" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title ">磐安县螺山路13号</h4>
-                            <p class="weui-media-box__desc" style="font-size: 10px">管理单位:磐安县螺山路</p>
+                            <h4 class="weui-media-box__title ">上饶市东岳路47号</h4>
+                            <p class="weui-media-box__desc" style="font-size: 10px">门牌管理单位:上饶市公安局</p>
                         </div>
                     </a>
 
@@ -96,7 +83,7 @@
                     <td style="font-size: 15px" >
 
                         <p class="weui-panel__hd">民警姓名：${building.name}厉韬</p>
-                        <p class="weui-panel__hd">民警电话：${building.address}15156257489</p>
+                        <p class="weui-panel__hd"><a href="tel:15179788823" style="color: #999999">民警电话:15156257489</a></p>
 
                     </td>
 
@@ -106,17 +93,18 @@
 
 
 
-        <div class="weui-cells weui-cells_form" style="height:30%;margin-top: 10px">
+        <div class="weui-cells weui-cells_form" style="height:40%;margin-top: 10px">
 
 
             <div id="container" tabindex="0"></div>
         </div>
 
-        <div class="weui-panel weui-panel_access">
+        <%--农户信息--%>
+        <div class="weui-panel weui-panel_access" id="fangwuinfo" style="display: block">
             <div class="weui-form-preview">
                 <%--<h2 class="poiname">安福寺</h2>--%>
                 <%--<div class="weui-form-preview__bd" style="text-align:left">--%>
-                    <%--<span class="weui-form-preview__value">安福寺位于浙江省金华市磐安县城南独秀屏下，为花台山公园风景区的主要景点。</span>--%>
+                <%--<span class="weui-form-preview__value">安福寺位于浙江省金华市磐安县城南独秀屏下，为花台山公园风景区的主要景点。</span>--%>
                 <%--</div>--%>
                 <div class="weui-form-preview__bd">
                     <div class="weui-form-preview__item">
@@ -151,19 +139,66 @@
                             <span class="weui-form-preview__value">药农</span>
                         </c:if>
                     </div>
-                    <c:if test="${building.busiType==2||building.busiType==3}">
-                        <div class="weui-form-preview__item">
-                            <label class="weui-form-preview__label">经营特色</label>
-                            <span class="weui-form-preview__value">空气清新，环境放松</span>
-                        </div>
-                    </c:if>
-            </div>
-                    <div class="weui-panel weui-panel_access" id="text" style="display: block">
-                        <div class="weui-panel__hd">详细信息</div>
-                    </div>
 
-                    <div class="weui-form-preview" id="menu" style="display: none">
-                        <div class="weui-form-preview__bd">
+
+                    <c:choose>
+                        <c:when test="${bfid==1}">
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">经营特色</label>
+                                <span class="weui-form-preview__value">空气清新，环境放松</span>
+                            </div>
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">客房数</label>
+                                <span class="weui-form-preview__value">${building.numberOfRoom}</span>
+                            </div>
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">床位数</label>
+                                <span class="weui-form-preview__value">${building.numberOfBed}</span>
+                            </div>
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">餐位数</label>
+                                <span class="weui-form-preview__value">${building.mealDigits}</span>
+                            </div>
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">建筑面积</label>
+                                <span class="weui-form-preview__value">${building.buildArea}</span>
+                            </div>
+
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">占地面积</label>
+                                <span class="weui-form-preview__value">${building.landArea}</span>
+                            </div>
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">房屋间数</label>
+                                <span class="weui-form-preview__value">${building.roomNum}</span>
+                            </div>
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label">家庭人口</label>
+                                <span class="weui-form-preview__value">${building.population}</span>
+                            </div>
+                        </c:when>
+                        <c:otherwise >
+                            <c:if test="${building.busiType==2||building.busiType==3}">
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">经营特色</label>
+                                    <span class="weui-form-preview__value">空气清新，环境放松</span>
+                                </div>
+                                <c:if test="${building.ifOpen==1}">
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">客房数</label>
+                                        <span class="weui-form-preview__value">${building.numberOfRoom}</span>
+                                    </div>
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">床位数</label>
+                                        <span class="weui-form-preview__value">${building.numberOfBed}</span>
+                                    </div>
+                                    <div class="weui-form-preview__item">
+                                        <label class="weui-form-preview__label">餐位数</label>
+                                        <span class="weui-form-preview__value">${building.mealDigits}</span>
+                                    </div>
+                                </c:if>
+
+                            </c:if>
                             <c:if test="${building.ifOpen==1}">
                                 <div class="weui-form-preview__item">
                                     <label class="weui-form-preview__label">建筑面积</label>
@@ -185,334 +220,388 @@
                             </c:if>
                             <c:if test="${building.ifOpen==0}">
                                 <div class="weui-form-preview__item">
-                                    <label class="weui-form-preview__label">户主未公开信息</label>
+                                    <label class="weui-form-preview__label">户主未公开更多信息</label>
 
                                 </div>
                             </c:if>
-                        </div>
+                        </c:otherwise>
+                    </c:choose>
+
+
+                    <%--<c:if test="${building.ifOpen==1}">--%>
+                    <%--<div class="weui-form-preview__item">--%>
+                    <%--<label class="weui-form-preview__label">建筑面积</label>--%>
+                    <%--<span class="weui-form-preview__value">${building.buildArea}</span>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="weui-form-preview__item">--%>
+                    <%--<label class="weui-form-preview__label">占地面积</label>--%>
+                    <%--<span class="weui-form-preview__value">${building.landArea}</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="weui-form-preview__item">--%>
+                    <%--<label class="weui-form-preview__label">房屋间数</label>--%>
+                    <%--<span class="weui-form-preview__value">${building.roomNum}</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="weui-form-preview__item">--%>
+                    <%--<label class="weui-form-preview__label">家庭人口</label>--%>
+                    <%--<span class="weui-form-preview__value">${building.population}</span>--%>
+                    <%--</div>--%>
+                    <%--</c:if>--%>
+                    <%--<c:if test="${building.ifOpen==0}">--%>
+                    <%--<div class="weui-form-preview__item">--%>
+                    <%--<label class="weui-form-preview__label">户主未公开信息</label>--%>
+
+                    <%--</div>--%>
+                    <%--</c:if>--%>
+                </div>
+            </div>
+
         </div>
 
 
 
-        <br><br>
+        <br><br><br><br><br><br>
 
-        <a href="login" class="weui-btn weui-btn_primary">用户登录</a>
+        <c:if test="${empty existUser}">
+            <a href="ShangRaologin" class="weui-btn weui-btn_primary">用户登录</a>
+        </c:if>
+        <c:if test="${not empty existUser}">
+            <a href="system" class="weui-btn weui-btn_primary">退出登录</a>
+        </c:if>
         <br><br>
     </div>
 
 
-            <div class="pageContent" id="tpl_monitoring" style="display:none;">
-                <div class="weui-cells weui-cells_form">
+    <div class="pageContent" id="tpl_monitoring" style="display:none;">
+        <div class="weui-cells weui-cells_form">
+            <%--<div class="weui-panel weui-panel_access">--%>
+                <%--<div class="weui-panel__hd">民政服务</div>--%>
+            <%--</div>--%>
+
+            <%--<div class="weui-grids">--%>
+                <%--<a href="javascript:void(0);" class="weui-grid">--%>
+                    <%--<div class="weui-grid__icon" >--%>
+                        <%--<img src="/static/images/menpai/phone.png" style="" alt="">--%>
+
+                    <%--</div>--%>
+                    <%--<p class="weui-grid__label">房主电话</p>--%>
+                <%--</a>--%>
+                <%--<a href="javascript:void(0);" class="weui-grid">--%>
+                <%--<div class="weui-grid__icon" >--%>
+                    <%--<img src="/static/images/menpai/home.png" style="" alt="">--%>
+
+                <%--</div>--%>
+                <%--<p class="weui-grid__label">房屋信息</p>--%>
+                <%--</a>--%>
+                <%--<c:forEach items="${allList}" var="systemList">--%>
+
+                    <%--<c:if test="${systemList.ifvalid=='1'&& systemList.deptid==111}">--%>
+                        <%--<a href="${systemList.url}" class="weui-grid">--%>
+                            <%--<div class="weui-grid__icon" >--%>
+                                <%--<img src="${systemList.icon}" style="" alt="">--%>
+
+                            <%--</div>--%>
+                            <%--<p class="weui-grid__label">${systemList.showname}</p>--%>
+                        <%--</a>--%>
+                    <%--</c:if>--%>
+
+                <%--</c:forEach>--%>
+
+            <%--</div>--%>
+            <%--<div class="weui-panel weui-panel_access">--%>
+                <%--<div class="weui-panel__hd">旅游服务</div>--%>
+            <%--</div>--%>
+            <%--<div class="weui-grids">--%>
+                <%--<c:forEach items="${allList}" var="policeSystem">--%>
+
+                    <%--<c:if test="${policeSystem.ifvalid=='1'&& policeSystem.deptid==333}">--%>
+                        <%--<a href="${policeSystem.url}" class="weui-grid">--%>
+                            <%--<div class="weui-grid__icon" >--%>
+                                <%--<img src="${policeSystem.icon}" alt="">--%>
+                            <%--</div>--%>
+                            <%--<p class="weui-grid__label">${policeSystem.showname}</p>--%>
+                        <%--</a>--%>
+                    <%--</c:if>--%>
+
+                <%--</c:forEach>--%>
+            <%--</div>--%>
+
+
+            <c:forEach items="${deptName}" var="deptName">
+
                     <div class="weui-panel weui-panel_access">
-                        <div class="weui-panel__hd">民政服务</div>
+                        <div class="weui-panel__hd">${deptName}</div>
                     </div>
 
-                    <div class="weui-grids">
-                        <a href="javascript:void(0);" class="weui-grid">
-                            <div class="weui-grid__icon" >
-                                <img src="/static/images/menpai/phone.png" style="" alt="">
+                        <div class="weui-grids">
+                            <c:forEach items="${allList}" var="policeSystem">
 
-                            </div>
-                            <p class="weui-grid__label">房主电话</p>
-                        </a>
-                        <a href="javascript:void(0);" class="weui-grid">
-                            <div class="weui-grid__icon" >
-                                <img src="/static/images/home.png" style="" alt="">
+                                <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                    <a href="${policeSystem.url}" class="weui-grid">
+                                        <div class="weui-grid__icon" >
+                                            <img src="${policeSystem.icon}" alt="">
+                                        </div>
+                                        <p class="weui-grid__label">${policeSystem.showname}</p>
+                                    </a>
+                                </c:if>
+                            </c:forEach>
 
-                            </div>
-                            <p class="weui-grid__label">房屋信息</p>
-                        </a>
-                        <c:forEach items="${allList}" var="systemList">
-
-                            <c:if test="${systemList.ifvalid=='1'&& systemList.deptid==111}">
-                                <a href="${systemList.url}" class="weui-grid">
-                                    <div class="weui-grid__icon" >
-                                        <img src="${systemList.icon}" style="" alt="">
-
-                                    </div>
-                                    <p class="weui-grid__label">${systemList.showname}</p>
-                                </a>
-                            </c:if>
-
-                        </c:forEach>
-
-                    </div>
-                    <div class="weui-panel weui-panel_access">
-                        <div class="weui-panel__hd">旅游服务</div>
-                    </div>
-                    <div class="weui-grids">
-                        <c:forEach items="${allList}" var="policeSystem">
-                            <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.deptid==333}">
-                                <a href="${policeSystem.url}" class="weui-grid">
-                                    <div class="weui-grid__icon" >
-                                        <img src="${policeSystem.icon}" alt="">
-                                    </div>
-                                    <p class="weui-grid__label">${policeSystem.showname}</p>
-                                </a>
-                            </c:if>
-
-                        </c:forEach>
-                    </div>
-
-
-                    <div class="weui-panel weui-panel_access">
-                        <div class="weui-panel__hd">公安便民</div>
-                    </div>
-                    <div class="weui-grids">
-                        <c:forEach items="${allList}" var="policeSystem">
-                            <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.deptid==222}">
-                                <a href="${policeSystem.url}" class="weui-grid">
-                                    <div class="weui-grid__icon" >
-                                        <img src="${policeSystem.icon}" alt="">
-                                    </div>
-                                    <p class="weui-grid__label">${policeSystem.showname}</p>
-                                </a>
-                            </c:if>
-
-                        </c:forEach>
-                    </div>
-                </div>
-
-
-                <br><br><br><br>
-                <a href="login" class="weui-btn weui-btn_primary">用户登录</a>
-                <br><br>
-            </div>
-            <div class="pageContent" id="tpl_feedback" style="display:none;">
-                <div class="page__bd page__bd_spacing">
-                    <br>
-                    <div class="weui-form-preview">
-                        <div class="weui-form-preview__hd">
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">门牌号</label>
-                                <em class="weui-form-preview__value">丹溪路37号</em>
-                            </div>
                         </div>
-                        <div class="weui-form-preview__bd">
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">用户名</label>
-                                <span class="weui-form-preview__value">刘三</span>
-                            </div>
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">电话</label>
-                                <span class="weui-form-preview__value">13723452345</span>
-                            </div>
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">问题描述</label>
-                                <span class="weui-form-preview__value">这里的门牌已经遭受无损，请求修复</span>
-                            </div>
-                        </div>
-                        <div class="weui-form-preview__ft">
-                            <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</a>
-                        </div>
-                    </div>
-                    <br>
 
-                    <div class="weui-form-preview">
-                        <div class="weui-form-preview__hd">
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">门牌号</label>
-                                <em class="weui-form-preview__value">八一南街102号</em>
-                            </div>
-                        </div>
-                        <div class="weui-form-preview__bd">
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">用户名</label>
-                                <span class="weui-form-preview__value">沈四</span>
-                            </div>
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">电话</label>
-                                <span class="weui-form-preview__value">13732143211</span>
-                            </div>
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">问题描述</label>
-                                <span class="weui-form-preview__value">希望加上一键报警功能</span>
-                            </div>
-                        </div>
-                        <div class="weui-form-preview__ft">
-                            <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</a>
-                        </div>
-                    </div>
-                    <br>
 
-                    <div class="weui-form-preview">
-                        <div class="weui-form-preview__hd">
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">门牌号</label>
-                                <em class="weui-form-preview__value">螺狮南路44号</em>
-                            </div>
-                        </div>
-                        <div class="weui-form-preview__bd">
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">用户名</label>
-                                <span class="weui-form-preview__value">张六</span>
-                            </div>
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">电话</label>
-                                <span class="weui-form-preview__value">13780982345</span>
-                            </div>
-                            <div class="weui-form-preview__item">
-                                <label class="weui-form-preview__label">问题描述</label>
-                                <span class="weui-form-preview__value">希望加上附近旅游推荐的功能</span>
-                            </div>
-                        </div>
-                        <div class="weui-form-preview__ft">
-                            <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</a>
-                        </div>
-                    </div>
-                    <br><br><br><br><br><br>
-                </div>
-            </div>
-            <div class="pageContent" id="tpl_dialogs">
-                <div id="dialogs">
-                    <!--BEGIN dialog1-->
-                    <div class="js_dialog" id="iosDialog1" style="display: none;">
-                        <div class="weui-mask"></div>
-                        <div class="weui-dialog">
-                            <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog1_title">弹窗标题</strong></div>
-                            <div class="weui-dialog__bd" id="iosDialog1_content">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>
-                            <div class="weui-dialog__ft">
-                                <a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>
-                                <a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog1_myfunction">确认</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--END dialog1-->
-                    <!--BEGIN dialog1-->
-                    <div class="js_dialog" id="iosDialog_input" style="display: none;">
-                        <div class="weui-mask"></div>
-                        <div class="weui-dialog">
-                            <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog_input_title">弹窗标题</strong></div>
-                            <div class="weui-dialog__bd"><input type="text" class="weui-input" placeholder="" id="iosDialog_input_content"></div>
-                            <div class="weui-dialog__ft">
-                                <a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>
-                                <a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog_input_myfunction">确认</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--END dialog1-->
-                </div>
-            </div>
+            </c:forEach>
+
+
+
+
+
         </div>
 
 
-        <!--导航页面-->
-        <div class="weui-tab">
-            <!--导航-->
-            <div class="weui-tabbar">
-                <!--发现-->
-                <%--<a class="weui-tabbar__item weui-bar__item_on" href="javascript:showqrcode();">--%>
+        <br><br><br><br>
+        <c:if test="${empty existUser}">
+            <a href="ShangRaologin" class="weui-btn weui-btn_primary">用户登录</a>
+        </c:if>
+        <c:if test="${not empty existUser}">
+            <a href="system" class="weui-btn weui-btn_primary">退出登录</a>
+        </c:if>
+        <br><br>
+    </div>
+    <div class="pageContent" id="tpl_feedback" style="display:none;">
+        <div class="page__bd page__bd_spacing">
+            <br>
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">门牌号</label>
+                        <em class="weui-form-preview__value">玉峰路37号</em>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">用户名</label>
+                        <span class="weui-form-preview__value">刘三</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">电话</label>
+                        <span class="weui-form-preview__value">13723452345</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">问题描述</label>
+                        <span class="weui-form-preview__value">这里的门牌已经遭受无损，请求修复</span>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</a>
+                </div>
+            </div>
+            <br>
+
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">门牌号</label>
+                        <em class="weui-form-preview__value">中山路102号</em>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">用户名</label>
+                        <span class="weui-form-preview__value">沈四</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">电话</label>
+                        <span class="weui-form-preview__value">13732143211</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">问题描述</label>
+                        <span class="weui-form-preview__value">希望加上一键报警功能</span>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</a>
+                </div>
+            </div>
+            <br>
+
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">门牌号</label>
+                        <em class="weui-form-preview__value">水南街44号</em>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">用户名</label>
+                        <span class="weui-form-preview__value">张六</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">电话</label>
+                        <span class="weui-form-preview__value">13780982345</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">问题描述</label>
+                        <span class="weui-form-preview__value">希望加上附近旅游推荐的功能</span>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">操作</a>
+                </div>
+            </div>
+            <br><br><br><br><br><br>
+        </div>
+    </div>
+    <div class="pageContent" id="tpl_dialogs">
+        <div id="dialogs">
+            <!--BEGIN dialog1-->
+            <div class="js_dialog" id="iosDialog1" style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog1_title">弹窗标题</strong></div>
+                    <div class="weui-dialog__bd" id="iosDialog1_content">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>
+                    <div class="weui-dialog__ft">
+                        <a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>
+                        <a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog1_myfunction">确认</a>
+                    </div>
+                </div>
+            </div>
+            <!--END dialog1-->
+            <!--BEGIN dialog1-->
+            <div class="js_dialog" id="iosDialog_input" style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog_input_title">弹窗标题</strong></div>
+                    <div class="weui-dialog__bd"><input type="text" class="weui-input" placeholder="" id="iosDialog_input_content"></div>
+                    <div class="weui-dialog__ft">
+                        <a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>
+                        <a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog_input_myfunction">确认</a>
+                    </div>
+                </div>
+            </div>
+            <!--END dialog1-->
+        </div>
+    </div>
+</div>
+
+
+<!--导航页面-->
+<div class="weui-tab">
+    <!--导航-->
+    <div class="weui-tabbar">
+        <!--发现-->
+        <%--<a class="weui-tabbar__item weui-bar__item_on" href="javascript:showqrcode();">--%>
                 <%--<span style="display: inline-block;position: relative;">--%>
-                <%--<img src="/static/images/icon_nav_layout_1.png" alt="" class="weui-tabbar__icon">--%>
-                <%--<span class="weui-badge weui-badge_dot"--%>
-                <%--style="position: absolute;top: 0;right: -6px;display: none"></span>--%>
+                    <%--<img src="/static/images/icon_nav_layout_1.png" alt="" class="weui-tabbar__icon">--%>
+                    <%--<span class="weui-badge weui-badge_dot"--%>
+                          <%--style="position: absolute;top: 0;right: -6px;display: none"></span>--%>
                 <%--</span>--%>
 
-                <%--<p class="weui-tabbar__label">二维码管理</p>--%>
-                <%--</a>--%>
+            <%--<p class="weui-tabbar__label">二维码管理</p>--%>
+        <%--</a>--%>
 
-                <!--我-->
-                <a class="weui-tabbar__item weui-bar__item_on " href="javascript:showqrcode();">
+        <!--我-->
+        <a class="weui-tabbar__item weui-bar__item_on " href="javascript:showqrcode();">
                 <span style="display: inline-block;position: relative;">
                     <img src="/static/images/menpai/shouye.png" alt="" class="weui-tabbar__icon">
+              
+            <p class="weui-tabbar__label" style="color: #999999">首页</p>
+        </a>
 
-            <p class="weui-tabbar__label">首页</p>
-                </a>
+        <!--通讯录-->
+        <a class="weui-tabbar__item weui-bar__item_on" href="javascript:showMonitoring();">
+            <img src="/static/images/zhengfu2.png" alt="" class="weui-tabbar__icon">
 
-                <!--通讯录-->
-                <a class="weui-tabbar__item weui-bar__item_on" href="javascript:showMonitoring();">
-                    <img src="/static/images/zhengfu2.png" alt="" class="weui-tabbar__icon">
+            <p class="weui-tabbar__label" style="color: #999999">公安服务</p>
+        </a>
 
-                    <p class="weui-tabbar__label">政府服务</p>
-                </a>
-
-                <!--消息-->
-                <a class="weui-tabbar__item weui-bar__item_on" href="javascript:showFeedback();">
+        <!--消息-->
+        <a class="weui-tabbar__item weui-bar__item_on" href="javascript:showFeedback();">
                 <span style="display: inline-block;position: relative;">
                     <img src="/static/images/icon_nav_message.png" alt="" class="weui-tabbar__icon">
 
-            <p class="weui-tabbar__label">周边反馈</p>
-                </a>
-            </div>
-        </div>
+            <p class="weui-tabbar__label" style="color: #999999">周边反馈</p>
+        </a>
+    </div>
+</div>
 
 
-        <script src="https://webapi.amap.com/maps?v=1.3&amp;key=0527fc08a6b9ab7a0d2dacdf50ed20d6&callback=init"></script>
-        <!-- UI组件库 1.0 -->
-        <script src="//webapi.amap.com/ui/1.0/main.js"></script>
-        <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
-        <script>
+<script src="https://webapi.amap.com/maps?v=1.3&amp;key=0527fc08a6b9ab7a0d2dacdf50ed20d6&callback=init"></script>
+<!-- UI组件库 1.0 -->
+<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+<script>
 
-            var dataX;//经度
-            var dataY;//纬度
+    var dataX;//经度
+    var dataY;//纬度
 
-            var marker,map = new AMap.Map('container', {
-                center: [120.449058,29.052711],
-                zoom: 17
-            });
+    var marker,map = new AMap.Map('container', {
+        center: [117.987743,28.44577],
+        zoom: 17
+    });
 
-            map.setFeatures(['road', 'bg', 'point'])//多个种类要素显示
+    map.setFeatures(['road', 'bg', 'point'])//多个种类要素显示
 
 
-            AMap.plugin('AMap.Geocoder', function () {
-                var geocoder = new AMap.Geocoder({
-                    city: "010"//城市，默认：“全国”
-                });
-                var marker = new AMap.Marker({
-                    map: map,
-                    bubble: true
-                })
-                map.on('click', function (e) {
-                    dataX = e.lnglat.lng;
-                    dataY = e.lnglat.lat;
+    AMap.plugin('AMap.Geocoder', function () {
+        var geocoder = new AMap.Geocoder({
+            city: "010"//城市，默认：“全国”
+        });
+        var marker = new AMap.Marker({
+            map: map,
+            bubble: true
+        })
+        map.on('click', function (e) {
+            dataX = e.lnglat.lng;
+            dataY = e.lnglat.lat;
 
-                    marker.setPosition(e.lnglat);
-                    geocoder.getAddress(e.lnglat, function (status, result) {
-                        if (status == 'complete') {
-                            document.getElementById('input').value = result.regeocode.formattedAddress
-                        }
-                    })
-                })
-            });
-
-            function locationConfirm() {
-                alert(dataX);
-                alert(dataY);
-            }
-
-            function addMarker() {
-                if (marker) {
-                    return;
+            marker.setPosition(e.lnglat);
+            geocoder.getAddress(e.lnglat, function (status, result) {
+                if (status == 'complete') {
+                    document.getElementById('input').value = result.regeocode.formattedAddress
                 }
-                marker = new AMap.Marker({
-                    icon: "<%=basepath%>/images/mark_b.png",
-                    position: [114.356531,30.5274]
-                });
-                marker.setMap(map);
-            }
-
-            $(document).ready(function(){
-                addMarker();
-
-
-            });
-
-        </script>
-
-
-
-        <script type="text/javascript">
-            var basepath = "/static";
-            /**
-             * 开始自动加载find
-             */
-            $(document).ready(function () {
-                //显示/隐藏子节点
-                showInnerContent();
-                //搜索栏
-                searchBarAction();
-                showqrcode();
             })
-        </script>
+        })
+    });
+
+    function locationConfirm() {
+        alert(dataX);
+        alert(dataY);
+    }
+
+    function addMarker() {
+        if (marker) {
+            return;
+        }
+        marker = new AMap.Marker({
+            icon: "<%=basepath%>/images/mark_b.png",
+            position: [114.356531,30.5274]
+        });
+        marker.setMap(map);
+    }
+
+    $(document).ready(function(){
+        addMarker();
+
+
+    });
+
+</script>
+
+
+
+<script type="text/javascript">
+    var basepath = "/static";
+    /**
+     * 开始自动加载find
+     */
+    $(document).ready(function () {
+        //显示/隐藏子节点
+        showInnerContent();
+        //搜索栏
+        searchBarAction();
+        showqrcode();
+    })
+</script>
 </body>
 </html>

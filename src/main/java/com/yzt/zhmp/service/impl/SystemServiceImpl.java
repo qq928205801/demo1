@@ -38,6 +38,11 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    public List<String> selectDeptNamebuDisCode(String disCode) {
+        return systemDao.selectDeptNamebuDisCode(disCode);
+    }
+
+    @Override
     public List<System> selectAll(String code) {
         return systemDao.selectAll(code);
     }
