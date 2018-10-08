@@ -6,7 +6,6 @@ import com.yzt.zhmp.service.CollectionSystemService;
 import com.yzt.zhmp.service.SystemService;
 import com.yzt.zhmp.service.UserService.UserLoginService;
 import com.yzt.zhmp.utils.MD5Utils;
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -158,21 +157,28 @@ public class UserLoginController {
         List<String> fileName=userLoginService.rolelogin(existUser.getUsrid());
         System.out.println(fileName);
 
-        //查看此用户是否有从建筑权限
+        //查看此用户是否有从此建筑权限
         List<String> buid=userLoginService.selectBuidbyUserId(existUser.getUsrid());
         System.out.println(buid);
-
+        //声明字段  为1时用户和建筑有关联
+        int bfid=0;
+        for (String s : buid) {
+            if ("17".equals(s)){
+              bfid=1;
+            }
+        }
+        session.setAttribute("bfid",bfid);
         //查看用户角色id
         List<String> fildId=userLoginService.selectFileIdByUserid(existUser.getUsrid());
 
         System.out.println(fildId);
         session.setAttribute("fildId",fildId);
 
-        //暂定为330727
-        List allList=systemService.selectAll("330727");
+        //暂定为330727  根据地区码显示政府服务功能模块
+        List allList=systemService.selectAll("361100");
         //  java.lang.System.out.println(allList);
         modelAndView.addObject("allList",allList);
-        //显示农户信息
+        //显示农户建筑信息根据建筑id
         Cbuilding cbuilding=collectionSystemService.selectBuildingByid(17);
         System.out.println(cbuilding.getIfOpen());
         modelAndView.addObject("building",cbuilding);

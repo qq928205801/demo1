@@ -71,105 +71,36 @@
 
     <div class="pageContent" id="tpl_qrcode" style="display:block;">
 
-        <%--<div class="pageContent" id="tpl_rcode" style="display:block;">--%>
-            <%--<div class="weui-cells weui-cells_form">--%>
-                <%--<div class="weui-panel weui-panel_access">--%>
-                    <%--<div class="weui-panel__hd">磐安便民</div>--%>
-                <%--</div>--%>
-
-                <%--<div class="weui-grids">--%>
-
-                    <%--<c:forEach items="${allList}" var="systemList">--%>
-
-                        <%--<c:if test="${systemList.ifvalid=='1'&& systemList.deptid==444}">--%>
-                            <%--<a href="${systemList.url}" class="weui-grid">--%>
-                                <%--<div class="weui-grid__icon" >--%>
-                                    <%--<img src="${systemList.icon}" style="" alt="">--%>
-
-                                <%--</div>--%>
-                                <%--<p class="weui-grid__label">${systemList.showname}</p>--%>
-                            <%--</a>--%>
-                        <%--</c:if>--%>
-
-                    <%--</c:forEach>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
 
 
 
         <div class="pageContent" id="tpl_monitoring" style="display:block;">
             <div class="weui-cells weui-cells_form">
-                <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd">民政服务</div>
-                </div>
+                <c:forEach items="${deptName}" var="deptName">
 
-                <div class="weui-grids">
-                    <a href="javascript:void(0);" class="weui-grid">
-                        <div class="weui-grid__icon" >
-                            <img src="/static/images/menpai/phone.png" style="" alt="">
+                    <div class="weui-panel weui-panel_access">
+                        <div class="weui-panel__hd">${deptName}</div>
+                    </div>
 
-                        </div>
-                        <p class="weui-grid__label">房主电话</p>
-                    </a>
-                    <a href="http://localhost:8080/index.html?storeId=3043a1750a1643a6bdf1fce367b4a2d6" class="weui-grid">
-                        <div class="weui-grid__icon" >
-                            <img src="/static/images/home.png" style="" alt="">
+                    <div class="weui-grids">
+                        <c:forEach items="${allList}" var="policeSystem">
 
-                        </div>
-                        <p class="weui-grid__label">商店信息</p>
-                    </a>
-                    <c:forEach items="${allList}" var="systemList">
+                            <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                <a href="${policeSystem.url}" class="weui-grid">
+                                    <div class="weui-grid__icon" >
+                                        <img src="${policeSystem.icon}" alt="">
+                                    </div>
+                                    <p class="weui-grid__label">${policeSystem.showname}</p>
+                                </a>
+                            </c:if>
+                        </c:forEach>
 
-                        <c:if test="${systemList.ifvalid=='1'&& systemList.deptid==111}">
-                            <a href="${systemList.url}" class="weui-grid">
-                                <div class="weui-grid__icon" >
-                                    <img src="${systemList.icon}" style="" alt="">
-
-                                </div>
-                                <p class="weui-grid__label">${systemList.showname}</p>
-                            </a>
-                        </c:if>
-
-                    </c:forEach>
-
-                </div>
-                <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd">旅游服务</div>
-                </div>
-                <div class="weui-grids">
-                    <c:forEach items="${allList}" var="policeSystem">
-                        <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.deptid==333}">
-                            <a href="${policeSystem.url}" class="weui-grid">
-                                <div class="weui-grid__icon" >
-                                    <img src="${policeSystem.icon}" alt="">
-                                </div>
-                                <p class="weui-grid__label">${policeSystem.showname}</p>
-                            </a>
-                        </c:if>
-
-                    </c:forEach>
-                </div>
+                    </div>
 
 
-                <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd">公安便民</div>
-                </div>
-                <div class="weui-grids">
-                    <c:forEach items="${allList}" var="policeSystem">
-                        <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.deptid==222}">
-                            <a href="${policeSystem.url}" class="weui-grid">
-                                <div class="weui-grid__icon" >
-                                    <img src="${policeSystem.icon}" alt="">
-                                </div>
-                                <p class="weui-grid__label">${policeSystem.showname}</p>
-                            </a>
-                        </c:if>
+                </c:forEach>
 
-                    </c:forEach>
-                </div>
             </div>
-
         </div>
 
 
