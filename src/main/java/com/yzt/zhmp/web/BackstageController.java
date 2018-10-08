@@ -45,7 +45,9 @@ public class BackstageController {
         return "control/login";
     }
 
-    //注销用户 清空session
+    /**
+     * 注销用户 清空session
+     */
     @RequestMapping("/control/Logout")
     public String toLogout(HttpServletRequest request){
         request.getSession().invalidate();
