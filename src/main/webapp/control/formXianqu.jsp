@@ -24,29 +24,29 @@
         <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">总体介绍</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="introduction" class="layui-textarea">${cdistrict.introduction}</textarea>
+                <textarea placeholder="请输入内容" id="introduction" name="introduction" class="layui-textarea" required></textarea>
             </div>
         </div>
 
          <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">交通状况</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="traffic" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" id="traffic" name="traffic" class="layui-textarea"  required></textarea>
             </div>
         </div>
          <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">旅游介绍</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="travel" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" id="travel" name="travel" class="layui-textarea"  required></textarea>
             </div>
         </div>
          <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">名胜古迹</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="memo" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" id="memo" name="memo" class="layui-textarea"  required></textarea>
             </div>
         </div>
-        
+
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn"  onclick="commitForm()" lay-filter="demo1">立即提交</button>
@@ -54,7 +54,7 @@
             </div>
         </div>
     </form>
-   
+
 
     <script src="./plugins/layui/layui.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -79,6 +79,18 @@
                 elem: '#date1'
             });
 
+            form.verify({
+                title: function(value){
+                    if(value.length < 5){
+                        return '标题至少得5个字符啊';
+                    }
+                }
+                ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+                ,content: function(value){
+                    layedit.sync(editIndex);
+                }
+            });
+
             //创建一个编辑器
             var editIndex = layedit.build('LAY_demo_editor');
 
@@ -101,11 +113,6 @@
             //     })
             //     return true;
             // });
-            function commitForm(){
-                alert("添加成功")
-                $("#mytable").submit();
-
-            }
 
         });
     </script>
