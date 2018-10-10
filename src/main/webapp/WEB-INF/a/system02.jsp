@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>智慧门牌服务管理</title>
+    <title>智慧门牌服务</title>
     <link rel="stylesheet" type="text/css" href="/static/style/weui.css"/>
     <link rel="stylesheet" type="text/css" href="/static/style/example.css"/>
     <%--<script type="text/javascript" src="/static/js/zepto.min.js"></script>--%>
@@ -55,13 +55,16 @@
         <div class="weui-panel weui-panel_access">
             <%--<div class="weui-panel__hd">门牌信息</div>--%>
                 <div class="weui-panel__bd" style="float: left">
-                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                        <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="/static/images/menpai/2c1c1576b4fc5268fd89f17288d1b868.gif" alt="">
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="padding-top: 10px">
+                        <div class="weui-media-box__hd" style="padding-top: 18px">
+                            <img class="weui-grid__icon" src="/static/images/dinwei.png" alt="">
                         </div>
-                        <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title ">上饶市东岳路47号</h4>
-                            <p class="weui-media-box__desc" style="font-size: 10px">门牌管理单位:上饶市公安局</p>
+                        <div class="weui-media-box__bd" style="padding-top: 1px; font-size: 14px">
+                            <%--<h4 class="weui-media-box__title ">信州区东岳路47号</h4>--%>
+                            <%--<p class="weui-media-box__desc" style="font-size: 10px">门牌管理单位:上饶市公安局</p>--%>
+
+                            <p><span style="color:#0048b2">地址名称</span>&nbsp;&nbsp;<span style="color: #999999">信州区东岳路47号</span></p>
+                            <span style="color:#0048b2">公安管辖</span>&nbsp;&nbsp;<span style="color: #999999">信州区信州派出所</span>
                         </div>
                     </a>
 
@@ -82,8 +85,8 @@
                     </td>
                     <td style="font-size: 15px" >
 
-                        <p class="weui-panel__hd">民警姓名：${building.name}厉韬</p>
-                        <p class="weui-panel__hd"><a href="tel:15179788823" style="color: #999999">民警电话:15156257489</a></p>
+                        <p class="weui-panel__hd">社区民警:厉韬</p>
+                        <p class="weui-panel__hd">一键报警:<a href="tel:15179788823" >15156257489</a></p>
 
                     </td>
 
@@ -227,7 +230,6 @@
                         </c:otherwise>
                     </c:choose>
 
-
                     <%--<c:if test="${building.ifOpen==1}">--%>
                     <%--<div class="weui-form-preview__item">--%>
                     <%--<label class="weui-form-preview__label">建筑面积</label>--%>
@@ -254,6 +256,8 @@
                     <%--</div>--%>
                     <%--</c:if>--%>
                 </div>
+
+
             </div>
 
         </div>
@@ -282,14 +286,13 @@
                 <%--<a href="javascript:void(0);" class="weui-grid">--%>
                     <%--<div class="weui-grid__icon" >--%>
                         <%--<img src="/static/images/menpai/phone.png" style="" alt="">--%>
-
                     <%--</div>--%>
                     <%--<p class="weui-grid__label">房主电话</p>--%>
                 <%--</a>--%>
+            <%--</div>--%>
                 <%--<a href="javascript:void(0);" class="weui-grid">--%>
                 <%--<div class="weui-grid__icon" >--%>
                     <%--<img src="/static/images/menpai/home.png" style="" alt="">--%>
-
                 <%--</div>--%>
                 <%--<p class="weui-grid__label">房屋信息</p>--%>
                 <%--</a>--%>
@@ -334,21 +337,39 @@
                     </div>
 
                         <div class="weui-grids">
-                            <c:forEach items="${allList}" var="policeSystem">
+                            <c:choose>
+                                <c:when test="${police==2}">
+                                    <c:forEach items="${allList}" var="policeSystem">
 
-                                <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
-                                    <a href="${policeSystem.url}" class="weui-grid">
-                                        <div class="weui-grid__icon" >
-                                            <img src="${policeSystem.icon}" alt="">
-                                        </div>
-                                        <p class="weui-grid__label">${policeSystem.showname}</p>
-                                    </a>
-                                </c:if>
-                            </c:forEach>
+                                        <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                            <a href="${policeSystem.url}" class="weui-grid">
+                                                <div class="weui-grid__icon" >
+                                                    <img src="${policeSystem.icon}" alt="">
+                                                </div>
+                                                <p class="weui-grid__label">${policeSystem.showname}</p>
+                                            </a>
+                                        </c:if>
+
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${allList}" var="policeSystem">
+                                        <c:if test="${policeSystem.ifdept=='1'}">
+                                            <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                                <a href="${policeSystem.url}" class="weui-grid">
+                                                    <div class="weui-grid__icon" >
+                                                        <img src="${policeSystem.icon}" alt="">
+                                                    </div>
+                                                    <p class="weui-grid__label">${policeSystem.showname}</p>
+                                                </a>
+                                            </c:if>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+
 
                         </div>
-
-
             </c:forEach>
 
 

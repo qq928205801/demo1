@@ -17,11 +17,12 @@ public class System implements Serializable {
 
     private String ifvalid;
 
+    private String ifdept;
     private static final long serialVersionUID = 1L;
 
     public System(){}
 
-    public System(int sysid, int deptid, String name, String url, String icon, String showname, String ifvalid) {
+    public System(int sysid, int deptid, String name, String url, String icon, String showname, String ifvalid,String ifdept) {
         this.sysid = sysid;
         this.deptid = deptid;
         this.name = name;
@@ -29,6 +30,7 @@ public class System implements Serializable {
         this.icon = icon;
         this.showname = showname;
         this.ifvalid = ifvalid;
+        this.ifdept=ifdept;
     }
     public System( int deptid, String name, String url, String icon, String showname, String ifvalid) {
         this.sysid = sysid;
@@ -58,6 +60,14 @@ public class System implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getIfdept() {
+        return ifdept;
+    }
+
+    public void setIfdept(String ifdept) {
+        this.ifdept = ifdept;
     }
 
     public void setName(String name) {
@@ -98,19 +108,15 @@ public class System implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", sysid=").append(sysid);
-        sb.append(", deptid=").append(deptid);
-        sb.append(", name=").append(name);
-        sb.append(", url=").append(url);
-        sb.append(", icon=").append(icon);
-        sb.append(", showname=").append(showname);
-        sb.append(", ifvalid=").append(ifvalid);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "System{" +
+                "sysid=" + sysid +
+                ", deptid=" + deptid +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", icon='" + icon + '\'' +
+                ", showname='" + showname + '\'' +
+                ", ifvalid='" + ifvalid + '\'' +
+                ", ifdept='" + ifdept + '\'' +
+                '}';
     }
 }

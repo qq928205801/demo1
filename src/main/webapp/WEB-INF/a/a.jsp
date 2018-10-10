@@ -73,6 +73,7 @@
         <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
             <div class="weui-cell__bd">查看更多门牌信息</div>
             <span class="weui-cell__ft"></span>
+            <img src="/static/images/shangrao/lvyoufuwu.png">
         </a>
     </div>
 </div>

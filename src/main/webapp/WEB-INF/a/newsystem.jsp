@@ -212,7 +212,7 @@
                     </c:if>
 
                     <c:choose>
-                        <c:when test="${fildId==1}">
+                        <c:when test="${bfid==1}">
                             <div class="weui-form-preview__item">
                                 <label class="weui-form-preview__label">建筑面积</label>
                                 <span class="weui-form-preview__value">${building.buildArea}</span>
@@ -297,7 +297,7 @@
 
 
         <c:if test="${empty existUser}">
-            <a href="login" class="weui-btn weui-btn_primary">用户登录</a>
+            <a href="pananlogin" class="weui-btn weui-btn_primary">用户登录</a>
         </c:if>
         <c:if test="${not empty existUser}">
             <a href="system" class="weui-btn weui-btn_primary">退出登录</a>
@@ -310,36 +310,36 @@
 
 
 
-    <div class="pageContent" id="tpl_dialogs">
-        <div id="dialogs">
-            <!--BEGIN dialog1-->
-            <div class="js_dialog" id="iosDialog1" style="display: none;">
-                <div class="weui-mask"></div>
-                <div class="weui-dialog">
-                    <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog1_title">弹窗标题</strong></div>
-                    <div class="weui-dialog__bd" id="iosDialog1_content">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>
-                    <div class="weui-dialog__ft">
-                        <a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>
-                        <a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog1_myfunction">确认</a>
-                    </div>
-                </div>
-            </div>
-            <!--END dialog1-->
-            <!--BEGIN dialog1-->
-            <div class="js_dialog" id="iosDialog_input" style="display: none;">
-                <div class="weui-mask"></div>
-                <div class="weui-dialog">
-                    <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog_input_title">弹窗标题</strong></div>
-                    <div class="weui-dialog__bd"><input type="text" class="weui-input" placeholder="" id="iosDialog_input_content"></div>
-                    <div class="weui-dialog__ft">
-                        <a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>
-                        <a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog_input_myfunction">确认</a>
-                    </div>
-                </div>
-            </div>
-            <!--END dialog1-->
-        </div>
-    </div>
+    <%--<div class="pageContent" id="tpl_dialogs">--%>
+        <%--<div id="dialogs">--%>
+            <%--<!--BEGIN dialog1-->--%>
+            <%--<div class="js_dialog" id="iosDialog1" style="display: none;">--%>
+                <%--<div class="weui-mask"></div>--%>
+                <%--<div class="weui-dialog">--%>
+                    <%--<div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog1_title">弹窗标题</strong></div>--%>
+                    <%--<div class="weui-dialog__bd" id="iosDialog1_content">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>--%>
+                    <%--<div class="weui-dialog__ft">--%>
+                        <%--<a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>--%>
+                        <%--<a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog1_myfunction">确认</a>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<!--END dialog1-->--%>
+            <%--<!--BEGIN dialog1-->--%>
+            <%--<div class="js_dialog" id="iosDialog_input" style="display: none;">--%>
+                <%--<div class="weui-mask"></div>--%>
+                <%--<div class="weui-dialog">--%>
+                    <%--<div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog_input_title">弹窗标题</strong></div>--%>
+                    <%--<div class="weui-dialog__bd"><input type="text" class="weui-input" placeholder="" id="iosDialog_input_content"></div>--%>
+                    <%--<div class="weui-dialog__ft">--%>
+                        <%--<a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>--%>
+                        <%--<a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog_input_myfunction">确认</a>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<!--END dialog1-->--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
 
 
