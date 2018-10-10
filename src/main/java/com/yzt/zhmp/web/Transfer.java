@@ -15,6 +15,15 @@ public class Transfer {
         return "WEB-INF/login/login";
     }
 
+    @RequestMapping("pananlogin")
+    public String pananlogin(){
+        return "WEB-INF/login/pananHouTailogin";
+    }
+    //@RequestMapping("login01")
+    //public String login01(){
+    //    return "control/login01";
+    //}
+
     @RequestMapping("ShangRaologin")
     public String ShangRaologin(){
         return "WEB-INF/login/ShangRaologin";

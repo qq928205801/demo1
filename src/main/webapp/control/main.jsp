@@ -16,98 +16,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
     <style type="text/css">
-        body, html, #container {
-            height: 100%;
-            margin: 0px;
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 800px;
         }
 
-        .panel {
-            background-color: #ddf;
-            color: #333;
-            border: 1px solid silver;
-            box-shadow: 3px 4px 3px 0px silver;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            line-height: 20px;
-        }
 
-        #input {
-            /*width: 250px;*/
-            height: 25px;
-            border: 0;
-            background-color: white;
-        }
     </style>
 
 </head>
 
 <body>
-    <div>
-        <img src="build/images/pananxian.png" width="1400" height="733">
-    </div>
 
-    <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+
+            <div id="container"></div>
+
+
+
+    <script src="https://webapi.amap.com/maps?v=1.4.10&key=1b1a76a550012e4b2f82c7a08569b4ea"></script>
+        <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
     <script>
-
-        var dataX;//经度
-        var dataY;//纬度
-
-        var marker,map = new AMap.Map('container', {
-            center: [120.449058,29.052711],
-            zoom: 17
+        var map = new AMap.Map('container', {
+            resizeEnable: true, //是否监控地图容器尺寸变化
+            // zoom:11, //初始化地图层级
+            // center: [120.450004,29.054551] //初始化地图中心点
         });
-
-        map.setFeatures(['road', 'bg', 'point'])//多个种类要素显示
-
-
-        AMap.plugin('AMap.Geocoder', function () {
-            var geocoder = new AMap.Geocoder({
-                city: "010"//城市，默认：“全国”
-            });
-            var marker = new AMap.Marker({
-                map: map,
-                bubble: true
-            })
-            map.on('click', function (e) {
-                dataX = e.lnglat.lng;
-                dataY = e.lnglat.lat;
-
-                marker.setPosition(e.lnglat);
-                geocoder.getAddress(e.lnglat, function (status, result) {
-                    if (status == 'complete') {
-                        document.getElementById('input').value = result.regeocode.formattedAddress
-                    }
-                })
-            })
+        map.on("complete", function(){
+            log.success("地图加载完成！");
         });
-
-        function locationConfirm() {
-            alert(dataX);
-            alert(dataY);
-        }
-
-        function addMarker() {
-            if (marker) {
-                return;
-            }
-            marker = new AMap.Marker({
-                icon: "<%=basepath%>/images/mark_b.png",
-                position: [114.356531,30.5274]
-            });
-            marker.setMap(map);
-        }
-
-        $(document).ready(function(){
-            addMarker();
-
-
-        });
-
     </script>
 </body>
 

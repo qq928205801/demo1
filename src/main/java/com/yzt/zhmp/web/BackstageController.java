@@ -44,7 +44,7 @@ public class BackstageController {
         if (existUser != null){
             return "control/index";
         }
-        return "control/login";
+        return "control/login01";
     }
 
     /**
@@ -53,7 +53,7 @@ public class BackstageController {
     @RequestMapping("/control/Logout")
     public String toLogout(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "control/login";
+        return "control/login01";
     }
 
     /**
@@ -70,6 +70,8 @@ public class BackstageController {
                         Model model, HttpServletRequest request) {
         User existUser = null;
         existUser = (User) request.getSession().getAttribute("existUser");
+        java.lang.System.out.println(name);
+        java.lang.System.out.println(password);
         if (existUser == null) {
             //判断用户存不存在
             User user = new User();
@@ -77,6 +79,7 @@ public class BackstageController {
             if (password != null) {
                 user.setPassword(MD5Utils.md5(password));
             }
+            java.lang.System.out.println(user);
             existUser = backstageService.login(user);
             //model.addAttribute("existUser", existUser);
             //将用户信息存入session
@@ -84,7 +87,7 @@ public class BackstageController {
                 request.getSession().setAttribute("existUser", existUser);
                 request.getSession().setAttribute("usrid", existUser.getUsrid());
             } catch (Exception e) {
-                return "control/login";
+                return "control/login01";
             }
 
         }

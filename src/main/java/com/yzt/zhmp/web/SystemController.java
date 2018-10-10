@@ -33,14 +33,14 @@ public class SystemController {
 
 
         request.getSession().invalidate();
-        String discode="330727";
+        String discode="330727 ";
         //显示政府服务分类
         List<String> deptName=systemService.selectDeptNamebuDisCode(discode);
 
         request.getSession().setAttribute("deptName",deptName);
         //
         List allList=systemService.selectAll(discode);
-        //java.lang.System.out.println(allList);
+        java.lang.System.out.println(allList);
         request.getSession().setAttribute("allList",allList);
         //显示农户信息
         Cbuilding cbuilding=collectionSystemService.selectBuildingByid(17);

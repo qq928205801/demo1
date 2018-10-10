@@ -76,6 +76,8 @@
 
         <div class="pageContent" id="tpl_monitoring" style="display:block;">
             <div class="weui-cells weui-cells_form">
+
+
                 <c:forEach items="${deptName}" var="deptName">
 
                     <div class="weui-panel weui-panel_access">
@@ -83,21 +85,40 @@
                     </div>
 
                     <div class="weui-grids">
-                        <c:forEach items="${allList}" var="policeSystem">
+                        <c:choose>
+                            <c:when test="${mimzheng==2}">
+                                <c:forEach items="${allList}" var="policeSystem">
 
-                            <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
-                                <a href="${policeSystem.url}" class="weui-grid">
-                                    <div class="weui-grid__icon" >
-                                        <img src="${policeSystem.icon}" alt="">
-                                    </div>
-                                    <p class="weui-grid__label">${policeSystem.showname}</p>
-                                </a>
-                            </c:if>
-                        </c:forEach>
+                                    <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                        <a href="${policeSystem.url}" class="weui-grid">
+                                            <div class="weui-grid__icon" >
+                                                <img src="${policeSystem.icon}" alt="">
+                                            </div>
+                                            <p class="weui-grid__label">${policeSystem.showname}</p>
+                                        </a>
+                                    </c:if>
+
+                                </c:forEach>
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:forEach items="${allList}" var="policeSystem">
+                                    <c:if test="${policeSystem.ifdept=='1'}">
+                                        <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                            <a href="${policeSystem.url}" class="weui-grid">
+                                                <div class="weui-grid__icon" >
+                                                    <img src="${policeSystem.icon}" alt="">
+                                                </div>
+                                                <p class="weui-grid__label">${policeSystem.showname}</p>
+                                            </a>
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+
 
                     </div>
-
-
                 </c:forEach>
 
             </div>
