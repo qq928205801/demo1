@@ -17,8 +17,8 @@ public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/backstageResource/**").addResourceLocations("classpath:/backstageResource/");
-       registry.addResourceHandler("/control/**").addResourceLocations("classpath:/control/");
-       registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/control/**").addResourceLocations("classpath:/control/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
     @Override
@@ -29,6 +29,7 @@ public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
         interceptorRegistration.excludePathPatterns("/control/index");
         interceptorRegistration.excludePathPatterns("/backstageResource/**");
         interceptorRegistration.excludePathPatterns("/system");
+        interceptorRegistration.excludePathPatterns("/control/login");
 
 
     }

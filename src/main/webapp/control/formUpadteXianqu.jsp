@@ -27,26 +27,26 @@
         <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">总体介绍</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容"  name="introduction" class="layui-textarea">${cdistrict.introduction}</textarea>
+                <textarea placeholder="请输入内容"  name="introduction" class="layui-textarea" required>${cdistrict.introduction}</textarea>
             </div>
         </div>
 
          <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">交通状况</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="traffic" class="layui-textarea">${cdistrict.traffic}</textarea>
+                <textarea placeholder="请输入内容" name="traffic" class="layui-textarea"  required>${cdistrict.traffic}</textarea>
             </div>
         </div>
          <div class="layui-form-item layui-form-text" style="width: 700px;">
-            <label class="layui-form-label">旅游介绍</label>
+            <label class="layui-form-label" >旅游介绍</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="travel" class="layui-textarea">${cdistrict.travel}</textarea>
+                <textarea placeholder="请输入内容" name="travel" class="layui-textarea"  required>${cdistrict.travel}</textarea>
             </div>
         </div>
          <div class="layui-form-item layui-form-text" style="width: 700px;">
             <label class="layui-form-label">名胜古迹</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="memo" class="layui-textarea">${cdistrict.memo}</textarea>
+                <textarea placeholder="请输入内容" name="memo" class="layui-textarea"  required>${cdistrict.memo}</textarea>
             </div>
         </div>
         

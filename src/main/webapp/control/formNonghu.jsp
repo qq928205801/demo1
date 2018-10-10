@@ -18,33 +18,33 @@
     <legend>添加农户信息</legend>
 </fieldset>
 
-<form class="layui-form" id="mytable" action="addFarmerBuildingInfo">
-    <div class="layui-form-item" style="width: 300px;">
+<form class="layui-form" id="mytable" action="addFarmerBuildingInfo" method="post">
+    <div class="layui-form-item layui-form" style="width: 300px;">
         <label class="layui-form-label">户主姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入户主姓名"
-                   class="layui-input">
+            <input type="text" name="name" autocomplete="off" placeholder="请输入户主姓名"
+                   class="layui-input" required>
         </div>
     </div>
     <div class="layui-form-item" style="width: 300px;">
         <label class="layui-form-label">联系电话</label>
         <div class="layui-input-block">
-            <input type="text" name="phoneNum" lay-verify="title" autocomplete="off" placeholder="请输入联系电话"
-                   class="layui-input">
+            <input type="text" name="phoneNum" autocomplete="off" placeholder="请输入联系电话"
+                   class="layui-input" required>
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">门派编号</label>
+            <label class="layui-form-label">门牌编号</label>
             <div class="layui-input-inline">
-                <input type="tel" name="familyType" lay-verify="familyType" autocomplete="off" class="layui-input">
+                <input type="tel" name="familyType" autocomplete="off" class="layui-input" required>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">家庭人口</label>
             <div class="layui-input-inline">
-                <input type="text" name="population" autocomplete="off" class="layui-input">
+                <input type="text" name="population" autocomplete="off" class="layui-input" required>
             </div>
         </div>
     </div>
@@ -53,13 +53,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">房屋间数</label>
             <div class="layui-input-inline">
-                <input type="text" name="roomNum" class="layui-input">
+                <input type="text" name="roomNum" class="layui-input" required>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">楼层层数</label>
             <div class="layui-input-inline">
-                <input type="text" name="floorNum" autocomplete="off" class="layui-input">
+                <input type="text" name="floorNum" autocomplete="off" class="layui-input" required>
             </div>
         </div>
 
@@ -69,19 +69,19 @@
         <div class="layui-inline">
             <label class="layui-form-label">占地面积</label>
             <div class="layui-input-inline">
-                <input type="text" name="landArea" autocomplete="off" class="layui-input">
+                <input type="text" name="landArea" autocomplete="off" class="layui-input" required>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">建筑面积</label>
             <div class="layui-input-inline">
-                <input type="text" name="buildArea" autocomplete="off" class="layui-input">
+                <input type="text" name="buildArea" autocomplete="off" class="layui-input" required>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">建筑年份</label>
             <div class="layui-input-inline">
-                <input type="text" name="buildingYear" autocomplete="off" class="layui-input">
+                <input type="text" name="buildingYear" autocomplete="off" class="layui-input" required>
             </div>
         </div>
 
@@ -93,7 +93,6 @@
             <label class="layui-form-label">农户类型</label>
             <div class="layui-input-block" style="width: 190px">
                 <select name="busiType" id="busiType" lay-filter="busiType">
-                    <option value=""></option>
                     <option value="1">一般农户</option>
                     <option value="2">药农</option>
                     <option value="3">农家乐</option>
@@ -110,23 +109,23 @@
         </div>
     </div>
     <%--农家乐,民宿的时候显示以下内容--%>
-    <div class="layui-form-item layui-hide" <%--style="display: none"--%> id="inputBox1">
+    <div class="layui-form-item layui-hide" id="inputBox1">
         <div class="layui-inline">
             <label class="layui-form-label">客房数</label>
             <div class="layui-input-inline">
-                <input type="text" name="numberOfRoom" autocomplete="off" class="layui-input">
+                <input type="text" name="numberOfRoom" autocomplete="off" class="layui-input" required>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">床位数</label>
             <div class="layui-input-inline">
-                <input type="text" name="numberOfBed" autocomplete="off" class="layui-input">
+                <input type="text" name="numberOfBed" autocomplete="off" class="layui-input" required>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">餐位数</label>
             <div class="layui-input-inline">
-                <input type="text" name="mealDigits" autocomplete="off" class="layui-input">
+                <input type="text" name="mealDigits" autocomplete="off" class="layui-input" required>
             </div>
         </div>
         <br>
@@ -136,7 +135,7 @@
     <div class="layui-form-item layui-form-text layui-hide" style="width: 700px;" id="inputBox2">
         <label class="layui-form-label">经营特色</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea" name="feature"></textarea>
+            <textarea placeholder="请输入内容" class="layui-textarea" name="feature" required></textarea>
         </div>
     </div>
     <%--农家乐,民宿的时候显示以上内容--%>
@@ -144,14 +143,14 @@
     <div class="layui-form-item layui-form-text" style="width: 700px;">
         <label class="layui-form-label">具体位置</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea" name="address"></textarea>
+            <textarea placeholder="请输入内容" class="layui-textarea" name="address" required></textarea>
         </div>
     </div>
 
     <div class="layui-form-item layui-form-text" style="width: 700px;">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea placeholder="请输入内容" class="layui-textarea" name="memo"></textarea>
+            <textarea placeholder="请输入内容" class="layui-textarea" name="memo" required></textarea>
         </div>
     </div>
     <div class="layui-input-block">
@@ -193,9 +192,9 @@
 
         //自定义验证规则
         form.verify({
-            title: function (value) {
-                if (value.length < 0) {
-                    return '姓名不能为空';
+            required: function(value){
+                if(value.length <= 0){
+                    alert('不能为空') ;
                 }
             }
         });

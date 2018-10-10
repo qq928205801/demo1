@@ -41,7 +41,9 @@ public class BackstageController {
     public String toLogin(HttpServletRequest request) {
         User existUser = null;
         existUser = (User) request.getSession().getAttribute("existUser");
-        if (existUser!=null)return "control/index";
+        if (existUser != null){
+            return "control/index";
+        }
         return "control/login";
     }
 
@@ -49,10 +51,11 @@ public class BackstageController {
      * 注销用户 清空session
      */
     @RequestMapping("/control/Logout")
-    public String toLogout(HttpServletRequest request){
+    public String toLogout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "control/login";
     }
+
     /**
      * 用户登陆
      *
@@ -80,7 +83,7 @@ public class BackstageController {
             try {
                 request.getSession().setAttribute("existUser", existUser);
                 request.getSession().setAttribute("usrid", existUser.getUsrid());
-            }catch (Exception e){
+            } catch (Exception e) {
                 return "control/login";
             }
 
@@ -137,39 +140,39 @@ public class BackstageController {
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
 
-            } else if (discode.substring(6,9).equals("000")){
+            } else if (discode.substring(6, 9).equals("000")) {
                 model.addAttribute("mark", "乡镇级");
 
                 List<District> districts = backstageService.selectAllArea(discode);
                 //java.lang.System.out.println(districts);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
-            }else if (discode.substring(9,12).equals("000")){
+            } else if (discode.substring(9, 12).equals("000")) {
                 model.addAttribute("mark", "村级");
 
                 List<District> districts = backstageService.selectAllArea(discode);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
 
-            }else if("0000".equals(discode.substring(13,17))){
+            } else if ("0000".equals(discode.substring(13, 17))) {
                 List<District> districts = backstageService.selectAllArea(discode);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
-            }else {
-                String msg="村";
-               model.addAttribute("msg",msg);
+            } else {
+                String msg = "村";
+                model.addAttribute("msg", msg);
             }
 
             //查询是此行政区是否有介绍
             Cdistrict cdistrict = collectionSystemService.selectCdistrict(discode);
             int dis = 0;
             if (cdistrict == null) {
-                request.getSession().setAttribute("dis",dis);
+                request.getSession().setAttribute("dis", dis);
 
             } else {
                 dis = 1;
-                request.getSession().setAttribute("dis",dis);
-                request.getSession().setAttribute("cdistrict",cdistrict);
+                request.getSession().setAttribute("dis", dis);
+                request.getSession().setAttribute("cdistrict", cdistrict);
 
             }
 
@@ -191,9 +194,9 @@ public class BackstageController {
         Integer usrid = existUser.getUsrid();
         //获取对应的区域
         String disCode = backstageService.findDisCode(usrid);
-        List<DisUserAddDisName> disUsers=collectionSystemService.selectUserByuserid(usrid);
+        List<DisUserAddDisName> disUsers = collectionSystemService.selectUserByuserid(usrid);
         java.lang.System.out.println(disUsers);
-        int count=disUsers.size();
+        int count = disUsers.size();
         JSONArray jsonArray = JSONArray.fromObject(disUsers);
         response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
                 + ",\"data\":" + jsonArray.toString() + "}");
@@ -273,69 +276,74 @@ public class BackstageController {
                              HttpServletResponse response, HttpServletRequest request) throws IOException {
         User existUser = (User) request.getSession().getAttribute("existUser");
         JSONObject json = new JSONObject();
-        Integer checkExist = backstageService.selectUserId(username);
-        if (checkExist == null) {
-            if (existUser != null) {
-                Integer priviusrid = existUser.getUsrid();
+        if (username!=null&username!=""&&password!=null&&password!="") {
+            Integer checkExist = backstageService.selectUserId(username);
+            if (checkExist == null) {
+                if (existUser != null) {
+                    Integer priviusrid = existUser.getUsrid();
 
-                //保存用户
-                if (username != null && username != "" && password != null && password != "") {
-                    User user = new User();
-                    user.setName(username);
-                    user.setPassword(MD5Utils.md5(password));
-                    backstageService.registered(user);
-                    //保存后再查询对应保存生成的id
-                    Integer usrID = backstageService.selectUserId(username);
-                    java.lang.System.out.println(usrID);
-                    java.lang.System.out.println(disCode);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    if (deptID != null) {
-                        //说明创建的是部门用户
-                        DeptUser deptUser = new DeptUser();
-                        deptUser.setDptusrid(usrID);
-                        deptUser.setUsrid(usrID);
-                        deptUser.setDeptid(deptID);
-                        deptUser.setPriviligetime(sdf.format(new Date()));
-                        deptUser.setPriviusrid(priviusrid);
-                        deptUser.setIfvalid("1");
-                        deptUser.setMemo("");
-                        backstageService.saveDeptUser(deptUser);
-                    }
-                    if (disCode.length()>0) {
+                    //保存用户
+                    if (username != null && username != "" && password != null && password != "") {
+                        User user = new User();
+                        user.setName(username);
+                        user.setPassword(MD5Utils.md5(password));
+                        backstageService.registered(user);
+                        //保存后再查询对应保存生成的id
+                        Integer usrID = backstageService.selectUserId(username);
+                        java.lang.System.out.println(usrID);
                         java.lang.System.out.println(disCode);
-                        DisUser disUser = new DisUser();
-                        disUser.setPriviligetime(sdf.format(new Date()));
-                        disUser.setPriviusrid(priviusrid);
-                        disUser.setDiscode(disCode);
-                        disUser.setUsrid(usrID);
-                        disUser.setIfvalid("1");
-                        if("0000".equals(disCode.substring(2, 6))){
-                            disUser.setMemo("省级用户");
-                        }else if ("00".equals(disCode.substring(4, 6))){
-                            disUser.setMemo("市级用户");
-                        }else if("000".equals(disCode.substring(6,9))){
-                            disUser.setMemo("县级用户");
-                        }else if("000".equals(disCode.substring(9,12))){
-                            disUser.setMemo("乡镇用户");
-                        }else{
-                            disUser.setMemo("村用户");
-                            user.setAccount("村");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        if (deptID != null) {
+                            //说明创建的是部门用户
+                            DeptUser deptUser = new DeptUser();
+                            deptUser.setDptusrid(usrID);
+                            deptUser.setUsrid(usrID);
+                            deptUser.setDeptid(deptID);
+                            deptUser.setPriviligetime(sdf.format(new Date()));
+                            deptUser.setPriviusrid(priviusrid);
+                            deptUser.setIfvalid("1");
+                            deptUser.setMemo("");
+                            backstageService.saveDeptUser(deptUser);
                         }
-                        backstageService.saveDisUser(disUser);
-                    }
+                        if (disCode.length() > 0) {
+                            java.lang.System.out.println(disCode);
+                            DisUser disUser = new DisUser();
+                            disUser.setPriviligetime(sdf.format(new Date()));
+                            disUser.setPriviusrid(priviusrid);
+                            disUser.setDiscode(disCode);
+                            disUser.setUsrid(usrID);
+                            disUser.setIfvalid("1");
+                            if ("0000".equals(disCode.substring(2, 6))) {
+                                disUser.setMemo("省级用户");
+                            } else if ("00".equals(disCode.substring(4, 6))) {
+                                disUser.setMemo("市级用户");
+                            } else if ("000".equals(disCode.substring(6, 9))) {
+                                disUser.setMemo("县级用户");
+                            } else if ("000".equals(disCode.substring(9, 12))) {
+                                disUser.setMemo("乡镇用户");
+                            } else {
+                                disUser.setMemo("村用户");
+                                user.setAccount("村");
+                            }
+                            backstageService.saveDisUser(disUser);
+                        }
 
-                    model.addAttribute("msg", "用户添加成功");
-                    return "control/form";
+                        model.addAttribute("msg", "用户添加成功");
+                        return "control/form";
+                    } else {
+                        model.addAttribute("msg", "用户名或密码不能为空");
+                        return "control/form";
+                    }
                 } else {
-                    model.addAttribute("msg", "用户名或密码不能为空");
+                    model.addAttribute("msg", "账户已失效，请重新登陆<br><a href='http://localhost:8080/control/index' target='_blank'>点击跳转重新登陆</a>");
                     return "control/form";
                 }
             } else {
-                model.addAttribute("msg", "账户已失效，请重新登陆<br><a href='http://localhost:8080/control/index' target='_blank'>点击跳转重新登陆</a>");
+                model.addAttribute("msg", "用户名已存在");
                 return "control/form";
             }
-        } else {
-            model.addAttribute("msg", "用户名已存在");
+        }else{
+            model.addAttribute("msg", "用户名密码不能为空");
             return "control/form";
         }
     }
