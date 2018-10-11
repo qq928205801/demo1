@@ -184,14 +184,14 @@
                         '    </div>\n' +
                         '\n' +
                         '\n' +
-                        '    <div class="layui-form-item layui-form-text" style="width: 700px;">\n' +
+                        '    <div class="layui-form-item layui-form-text" style="width: 500px;">\n' +
                         '        <label class="layui-form-label">具体位置</label>\n' +
                         '        <div class="layui-input-block">\n' +
                         '            <textarea placeholder="请输入内容"  class="layui-textarea" name="address">'+data.address+'</textarea>\n' +
                         '        </div>\n' +
                         '    </div>\n' +
                         '\n' +
-                        '    <div class="layui-form-item layui-form-text" style="width: 700px;">\n' +
+                        '    <div class="layui-form-item layui-form-text" style="width: 500px;">\n' +
                         '        <label class="layui-form-label">备注</label>\n' +
                         '        <div class="layui-input-block">\n' +
                         '            <textarea placeholder="请输入内容"  class="layui-textarea" name="memo">'+data.memo+'</textarea>\n' +

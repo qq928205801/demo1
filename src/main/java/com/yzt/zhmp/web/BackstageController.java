@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.tools.JavaCompiler;
 import java.io.IOException;
+import java.lang.System;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +69,8 @@ public class BackstageController {
     @RequestMapping("/control/login")
     public String login(String name, String password,
                         Model model, HttpServletRequest request) {
+        request.getSession().invalidate();
+        String discode="";
         User existUser = null;
         existUser = (User) request.getSession().getAttribute("existUser");
         java.lang.System.out.println(name);
@@ -87,14 +90,16 @@ public class BackstageController {
                 request.getSession().setAttribute("existUser", existUser);
                 request.getSession().setAttribute("usrid", existUser.getUsrid());
             } catch (Exception e) {
+                request.setAttribute("error", "账号或密码错误");
                 return "control/login01";
             }
 
         }
-
+        System.err.println(existUser);
         if (existUser == null) {
             request.setAttribute("error", "账号或密码错误");
-            return "control/login";
+            java.lang.System.out.println(existUser);
+            return "control/login01";
         } else {
             Integer usrid = existUser.getUsrid();
             DisUser disUser = backstageService.selectDisUser(usrid);
@@ -102,9 +107,15 @@ public class BackstageController {
             Department department = backstageService.findDept(usrid);
             model.addAttribute("department", department);
             request.getSession().setAttribute("department", department);
-            String discode = disUser.getDiscode();
-            //把discode存入session
-            request.getSession().setAttribute("discode", discode);
+            try {
+                discode = disUser.getDiscode();
+                //把discode存入session
+                request.getSession().setAttribute("discode", discode);
+            } catch (Exception e){
+                request.setAttribute("error", "此账号没有权限登录");
+                return "control/login01";
+            }
+
 
             //查询对应的区域名称
             String district = collectionSystemService.selectDisName(usrid);
