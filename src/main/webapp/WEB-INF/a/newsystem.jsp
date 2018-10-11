@@ -98,8 +98,8 @@
                     </td>
                     <td style="font-size: 15px" >
 
-                        <p class="weui-panel__hd">民警姓名：厉韬</p>
-                        <p class="weui-panel__hd">一键报警：<a href="tel:15179788823" >15156257489</a></p>
+                        <p class="weui-panel__hd">民警姓名：${building.name}厉韬</p>
+                        <p class="weui-panel__hd"><a href="tel:15179788823" style="color: #999999">民警电话：${building.address}15156257489</a></p>
 
                     </td>
 
@@ -113,10 +113,10 @@
 
                 <a href="javascript:void(0);" id="fangwu" class="weui-grid">
                     <div class="weui-grid__icon" >
-                         <img src="/static/images/panan/diming.png" style="" alt="">
+                         <img src="/static/images/fw.png" style="" alt="">
 
                      </div>
-                    <p class="weui-grid__label">地名信息</p>
+                    <p class="weui-grid__label">房屋信息</p>
                 </a>
 
                 <a href="zhengfufuwu" class="weui-grid" id="engfu">

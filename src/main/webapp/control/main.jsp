@@ -49,7 +49,6 @@
             // center: [120.450004,29.054551] //初始化地图中心点
         });
         map.on("complete", function(){
-
             log.success("地图加载完成！");
         });
     </script>

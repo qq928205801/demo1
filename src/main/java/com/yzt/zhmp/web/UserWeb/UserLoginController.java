@@ -124,22 +124,21 @@ public class UserLoginController {
         session.setAttribute("bfid",bfid);
 
 
-        //暂未用到
         //查看用户角色id
         List<String> fildId=userLoginService.selectFileIdByUserid(existUser.getUsrid());
         System.out.println(fildId);
-
         session.setAttribute("fildId",fildId);
-
         System.err.println(fildId);
+        //声明字段 是否为民政0为否 2为是
+        int mimzheng=0;
+        //查看用户角色id
 
-        try {
-            //查找用户对应的部门id
-            int deptid=userLoginService.selectByUserid(existUser.getUsrid());
-            session.setAttribute("deptid",deptid);
-        }catch (Exception e){
-
+        for (String s : fildId) {
+            if ("3".equals(s))mimzheng=2;
         }
+        System.out.println(fildId);
+        session.setAttribute("mimzheng",mimzheng);
+
 
 
 

@@ -65,22 +65,6 @@
 
             </a>
 
-            <a href="javascript:void(0);" class="weui-grid">
-                <div class="weui-grid__icon"  style="">
-
-
-                </div>
-
-            </a>
-            <c:if test="${not empty deptid}">
-                <a href="pananHouTai" class="weui-grid">
-                    <div class="weui-grid__icon"  style="">
-                        <img src="/static/images/panan/houtai.png" style="" alt="">
-
-                    </div>
-                    <p class="weui-grid__label">后台管理</p>
-                </a>
-            </c:if>
         </div>
     </div>
 </div>
@@ -101,7 +85,23 @@
                     </div>
 
                     <div class="weui-grids">
+                        <c:choose>
+                            <c:when test="${mimzheng==2}">
+                                <c:forEach items="${allList}" var="policeSystem">
 
+                                    <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
+                                        <a href="${policeSystem.url}" class="weui-grid">
+                                            <div class="weui-grid__icon" >
+                                                <img src="${policeSystem.icon}" alt="">
+                                            </div>
+                                            <p class="weui-grid__label">${policeSystem.showname}</p>
+                                        </a>
+                                    </c:if>
+
+                                </c:forEach>
+                            </c:when>
+
+                            <c:otherwise>
                                 <c:forEach items="${allList}" var="policeSystem">
                                     <c:if test="${policeSystem.ifdept=='1'}">
                                         <c:if test="${policeSystem.ifvalid=='1'&& policeSystem.name==deptName}">
@@ -114,6 +114,8 @@
                                         </c:if>
                                     </c:if>
                                 </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
 
 
                     </div>
@@ -125,12 +127,12 @@
 
         <br><br><br><br>
 
-        <c:if test="${empty existUser}">
-            <a href="pananlogin" class="weui-btn weui-btn_primary">用户登录</a>
-        </c:if>
-        <c:if test="${not empty existUser}">
-            <a href="system" class="weui-btn weui-btn_primary">退出登录</a>
-        </c:if>
+            <c:if test="${empty existUser}">
+                <a href="login" class="weui-btn weui-btn_primary">用户登录</a>
+            </c:if>
+            <c:if test="${not empty existUser}">
+                <a href="system" class="weui-btn weui-btn_primary">退出登录</a>
+            </c:if>
     </div>
 
 

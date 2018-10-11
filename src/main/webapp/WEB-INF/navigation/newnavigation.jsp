@@ -26,22 +26,6 @@
 <div class="page">
 
     <div class="pageContent" id="tpl_qrcode" style="display:block;">
-    <div class="weui-cells weui-cells_form">
-
-    <div class="weui-grids" onClick="javascript :history.back(-1);">
-
-    <a href="system" class="weui-grid">
-    <div class="weui-grid__icon" >
-    <img src="/static/images/panan/tuichu.png" style="" alt="">
-
-    </div>
-    <p class="weui-grid__label">退出</p>
-    </a>
-
-    <
-
-    </div>
-    </div>
         <div class="page__hd" style="height: 30px;padding-top: 0px;padding-bottom: 40px;">
             <ul id="ashbin" style="display: none">
                 <li>

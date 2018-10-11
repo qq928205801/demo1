@@ -49,7 +49,7 @@
 <body>
 <div style="width: 350px;margin: 0 auto;margin-top:200px;">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>智慧门牌登录系统</legend>
+        <legend>登录系统</legend>
     </fieldset>
     <form class="layui-form" action="${pageContext.request.contextPath}/control/login" method="post">
         <div class="layui-form-item">
@@ -77,15 +77,5 @@
         </div>
     </form>
 </div>
-<script>
-    window.onload = function () {
-        var msg = '${error}';
-        if (msg.length > 0) {
-            alert(msg);
-        }
-    };
-
-
-</script>
 </body>
 </html>
