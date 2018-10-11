@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>KIT ADMIN</title>
+    <title>ADMIN</title>
     <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
     <link rel="stylesheet" href="./build/css/app.css" media="all">
