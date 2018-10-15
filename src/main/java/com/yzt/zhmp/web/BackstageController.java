@@ -24,12 +24,14 @@ import java.util.List;
 
 /**
  * @author wang
+ * web端后台系统
  */
 @Controller
 public class BackstageController {
 
     @Autowired
     private CollectionSystemService collectionSystemService;
+
     @Autowired
     BackstageService backstageService;
 
@@ -42,7 +44,7 @@ public class BackstageController {
     public String toLogin(HttpServletRequest request) {
         User existUser = null;
         existUser = (User) request.getSession().getAttribute("existUser");
-        if (existUser != null){
+        if (existUser != null) {
             return "control/index";
         }
         return "control/login01";
@@ -70,7 +72,7 @@ public class BackstageController {
     public String login(String name, String password,
                         Model model, HttpServletRequest request) {
         request.getSession().invalidate();
-        String discode="";
+        String discode = "";
         User existUser = null;
         existUser = (User) request.getSession().getAttribute("existUser");
         java.lang.System.out.println(name);
@@ -84,9 +86,9 @@ public class BackstageController {
             }
             java.lang.System.out.println(user);
             existUser = backstageService.login(user);
-            //model.addAttribute("existUser", existUser);
             //将用户信息存入session
             try {
+                model.addAttribute("existUser", existUser);
                 request.getSession().setAttribute("existUser", existUser);
                 request.getSession().setAttribute("usrid", existUser.getUsrid());
             } catch (Exception e) {
@@ -95,7 +97,6 @@ public class BackstageController {
             }
 
         }
-        System.err.println(existUser);
         if (existUser == null) {
             request.setAttribute("error", "账号或密码错误");
             java.lang.System.out.println(existUser);
@@ -111,11 +112,10 @@ public class BackstageController {
                 discode = disUser.getDiscode();
                 //把discode存入session
                 request.getSession().setAttribute("discode", discode);
-            } catch (Exception e){
+            } catch (Exception e) {
                 request.setAttribute("error", "此账号没有权限登录");
                 return "control/login01";
             }
-
 
             //查询对应的区域名称
             String district = collectionSystemService.selectDisName(usrid);
@@ -138,14 +138,12 @@ public class BackstageController {
                 model.addAttribute("mark", "省级");
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
-
                 //省级账号
             } else if (discode.substring(2, 6).equals("0000")) {
                 model.addAttribute("mark", "市级");
                 List<District> districts = backstageService.selectAllArea(discode);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
-
                 //市级账号
             } else if (discode.substring(4, 6).equals("00")) {
                 model.addAttribute("mark", "县区级");
@@ -153,21 +151,17 @@ public class BackstageController {
                 List<District> districts = backstageService.selectAllArea(discode);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
-
             } else if (discode.substring(6, 9).equals("000")) {
                 model.addAttribute("mark", "乡镇级");
-
                 List<District> districts = backstageService.selectAllArea(discode);
                 //java.lang.System.out.println(districts);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
             } else if (discode.substring(9, 12).equals("000")) {
                 model.addAttribute("mark", "村级");
-
                 List<District> districts = backstageService.selectAllArea(discode);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
-
             } else if ("0000".equals(discode.substring(13, 17))) {
                 List<District> districts = backstageService.selectAllArea(discode);
                 model.addAttribute("districts", districts);
@@ -176,24 +170,20 @@ public class BackstageController {
                 String msg = "村";
                 model.addAttribute("msg", msg);
             }
-
             //查询是此行政区是否有介绍
             Cdistrict cdistrict = collectionSystemService.selectCdistrict(discode);
             int dis = 0;
             if (cdistrict == null) {
                 request.getSession().setAttribute("dis", dis);
-
             } else {
                 dis = 1;
                 request.getSession().setAttribute("dis", dis);
                 request.getSession().setAttribute("cdistrict", cdistrict);
 
             }
-
             return "control/index";
         }
     }
-
 
     /**
      * 查找所有行政用户
@@ -214,48 +204,7 @@ public class BackstageController {
         JSONArray jsonArray = JSONArray.fromObject(disUsers);
         response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
                 + ",\"data\":" + jsonArray.toString() + "}");
-        //if ("00000000000000000".equals(disCode)) {
-        //    //管理员
-        //
-        //
-        //} else if ("0000".equals(disCode.substring(2, 6))) {
-        //    //省
-        //    //String substring = disCode.substring(0, 2);
-        //    //List<DisUser> disUsers = backstageService.selectAllProvinceDisUser(substring);
-        //    //int count = disUsers.size();
-        //    List<DisUserAddDisName> disUsers=collectionSystemService.selectUserByuserid(usrid);
-        //    java.lang.System.out.println(disUsers);
-        //    int count=disUsers.size();
-        //    JSONArray jsonArray = JSONArray.fromObject(disUsers);
-        //    response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
-        //            + ",\"data\":" + jsonArray.toString() + "}");
-        //
-        //} else if ("00".equals(disCode.substring(4, 6))) {
-        //    //市
-        //    String substring = disCode.substring(0, 4);
-        //    List<DisUser> disUsers = backstageService.selectAllCityDisUser(substring);
-        //    int count = disUsers.size();
-        //    JSONArray jsonArray = JSONArray.fromObject(disUsers);
-        //    response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
-        //            + ",\"data\":" + jsonArray.toString() + "}");
-        //}else if (disCode.substring(6,9).equals("000")) {
-        //    //x县
-        //    String substring = disCode.substring(0,6);
-        //    List<DisUser> disUsers = backstageService.selectAllTownDisUser(substring);
-        //    java.lang.System.out.println(disUsers);
-        //    int count = disUsers.size();
-        //    JSONArray jsonArray = JSONArray.fromObject(disUsers);
-        //    response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
-        //            + ",\"data\":" + jsonArray.toString() + "}");
-        //}else if (disCode.substring(9,12).equals("000")) {
-        //    //市
-        //    String substring = disCode.substring(0,9);
-        //    List<DisUser> disUsers = backstageService.selectAllCityDisUser(substring);
-        //    int count = disUsers.size();
-        //    JSONArray jsonArray = JSONArray.fromObject(disUsers);
-        //    response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
-        //            + ",\"data\":" + jsonArray.toString() + "}");
-        //}
+
     }
 
     /**
@@ -290,7 +239,7 @@ public class BackstageController {
                              HttpServletResponse response, HttpServletRequest request) throws IOException {
         User existUser = (User) request.getSession().getAttribute("existUser");
         JSONObject json = new JSONObject();
-        if (username!=null&username!=""&&password!=null&&password!="") {
+        if (username != null & username != "" && password != null && password != "") {
             Integer checkExist = backstageService.selectUserId(username);
             if (checkExist == null) {
                 if (existUser != null) {
@@ -356,12 +305,19 @@ public class BackstageController {
                 model.addAttribute("msg", "用户名已存在");
                 return "control/form";
             }
-        }else{
+        } else {
             model.addAttribute("msg", "用户名密码不能为空");
             return "control/form";
         }
     }
 
+    /**
+     * 查询所有下一级的所有用户
+     *
+     * @param discode
+     * @param model
+     * @return
+     */
     @RequestMapping("/findAllUser")
     public String findAllUser(String discode, Model model) {
         if (discode.equals("000000")) {

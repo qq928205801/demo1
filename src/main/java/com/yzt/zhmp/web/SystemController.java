@@ -22,210 +22,267 @@ import java.util.SortedMap;
 
 @Controller
 public class SystemController {
+
     @Autowired
     private SystemService systemService;
+
     @Autowired
     private CollectionSystemService collectionSystemService;
-    //首页显示
+
+    /**
+     * 手机端首页
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("system")
-    public ModelAndView system(HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView();
+    public ModelAndView system(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
 
 
         request.getSession().invalidate();
-        String discode="330727 ";
+        String discode = "330727 ";
         //显示政府服务分类
-        List<String> deptName=systemService.selectDeptNamebuDisCode(discode);
+        List<String> deptName = systemService.selectDeptNamebuDisCode(discode);
 
-        request.getSession().setAttribute("deptName",deptName);
+        request.getSession().setAttribute("deptName", deptName);
         //
-        List allList=systemService.selectAll(discode);
+        List allList = systemService.selectAll(discode);
         java.lang.System.out.println(allList);
-        request.getSession().setAttribute("allList",allList);
+        request.getSession().setAttribute("allList", allList);
         //显示农户信息
-        Cbuilding cbuilding=collectionSystemService.selectBuildingByid(17);
+        Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
 
         java.lang.System.out.println(cbuilding.getIfOpen());
-        modelAndView.addObject("building",cbuilding);
+        modelAndView.addObject("building", cbuilding);
         modelAndView.setViewName("WEB-INF/a/newsystem");
         return modelAndView;
     }
 
-    //显示政府服务
+    /**
+     * 显示政府服务
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("zhengfufuwu")
-    public ModelAndView zhengfufuwu(HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView();
+    public ModelAndView zhengfufuwu(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
 
 
         modelAndView.setViewName("WEB-INF/a/zhengfufuwu");
         return modelAndView;
     }
 
-    //显示想关连接
+    /**
+     * 相关连接
+     *
+     * @return
+     */
     @RequestMapping("xiangguanlianjie")
-    public ModelAndView xiangguanlianjie(){
-        ModelAndView modelAndView=new ModelAndView();
-        List allList=systemService.selectAll("330727");
+    public ModelAndView xiangguanlianjie() {
+        ModelAndView modelAndView = new ModelAndView();
+        List allList = systemService.selectAll("330727");
         java.lang.System.out.println(allList);
-        modelAndView.addObject("allList",allList);
+        modelAndView.addObject("allList", allList);
         modelAndView.setViewName("WEB-INF/a/xiangguanlianjie");
 
         return modelAndView;
     }
 
-    //显示周边反馈
+    /**
+     * 周边反馈
+     *
+     * @return
+     */
     @RequestMapping("zhoubianfankui")
-    public ModelAndView zhoubianfankui(){
-        ModelAndView modelAndView=new ModelAndView();
+    public ModelAndView zhoubianfankui() {
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("WEB-INF/a/zhoubianfankui");
         return modelAndView;
     }
 
-
-
-
-
-
+    /**
+     * 未使用
+     *
+     * @return
+     */
     @RequestMapping("zhengwu")
-    public ModelAndView zhengwu(){
-        ModelAndView modelAndView=new ModelAndView();
-        //
-        List allList=systemService.selectAll("330727");
-        java.lang.System.out.println(allList);
-
-        modelAndView.addObject("allList",allList);
+    public ModelAndView zhengwu() {
+        ModelAndView modelAndView = new ModelAndView();
+        List allList = systemService.selectAll("330727");
+        modelAndView.addObject("allList", allList);
         modelAndView.setViewName("WEB-INF/a/ZhengWusystem");
         return modelAndView;
     }
 
-    //后台显示
+    /**
+     * 后台显示
+     *
+     * @return
+     */
     @RequestMapping("systemnavigation")
-    public ModelAndView systemnavigation(){
-        ModelAndView modelAndView=new ModelAndView();
+    public ModelAndView systemnavigation() {
+        ModelAndView modelAndView = new ModelAndView();
         //查询民政
-        List systemList=systemService.selectSystem();
+        List systemList = systemService.selectSystem();
         //java.lang.System.out.println(systemList);
         //查询公安
-        List policeList=systemService.selectPliceSystem();
-        modelAndView.addObject("policeSystem",policeList);
+        List policeList = systemService.selectPliceSystem();
+        modelAndView.addObject("policeSystem", policeList);
         java.lang.System.err.println(policeList);
-        modelAndView.addObject("systemList",systemList);
+        modelAndView.addObject("systemList", systemList);
         modelAndView.setViewName("WEB-INF/navigation/newnavigation");
         return modelAndView;
     }
 
-    //显示添加民政功能模块页面
+    /**
+     * 显示添加民政功能模块页面
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("addOrgmicroserviceVie")
-    public ModelAndView addOrgmicroserviceVie(HttpServletRequest request){
-        ModelAndView modelAndView=new ModelAndView();
-        String deptid=request.getParameter("deptid");
+    public ModelAndView addOrgmicroserviceVie(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        String deptid = request.getParameter("deptid");
         java.lang.System.out.println(deptid);
-        List systemList=systemService.selectSystem();
+        List systemList = systemService.selectSystem();
         java.lang.System.out.println(systemList);
-        modelAndView.addObject("systemList",systemList);
+        modelAndView.addObject("systemList", systemList);
         modelAndView.setViewName("WEB-INF/microservice/Orgaddmicroservice");
         return modelAndView;
     }
-    //显示禁用民政模块功能页面
+
+    /**
+     * 显示禁用民政模块功能页面
+     * @return
+     */
     @RequestMapping("deleteOrgmicroserviceVie")
-    public ModelAndView deleteOrgmicroserviceVie(){
-        ModelAndView modelAndView=new ModelAndView();
-        List systemList=systemService.selectSystem();
+    public ModelAndView deleteOrgmicroserviceVie() {
+        ModelAndView modelAndView = new ModelAndView();
+        List systemList = systemService.selectSystem();
         java.lang.System.out.println(systemList);
-        modelAndView.addObject("systemList",systemList);
+        modelAndView.addObject("systemList", systemList);
         modelAndView.setViewName("WEB-INF/microservice/Orgdeletemicroservice");
         return modelAndView;
     }
 
-    //添加民政功能模块
+    /**
+     * 添加民政功能模块
+     * @param link_id
+     * @return
+     */
     @RequestMapping("addOrgmicroservice")
     @ResponseBody
-    public int addOrgmicroservice(String link_id){
-        ArrayList arrayList=new ArrayList();
+    public int addOrgmicroservice(String link_id) {
+        ArrayList arrayList = new ArrayList();
         //把json存入list
-        JSONArray jsonArray=JSONArray.fromObject(link_id);
-        for (int i=0;i<jsonArray.size();i++){
+        JSONArray jsonArray = JSONArray.fromObject(link_id);
+        for (int i = 0; i < jsonArray.size(); i++) {
             arrayList.add(jsonArray.get(i));
         }
-        java.lang. System.out.println(arrayList);
-        int i=systemService.addOrgmicroservice(arrayList);
-        java.lang. System.out.println(i);
+        java.lang.System.out.println(arrayList);
+        int i = systemService.addOrgmicroservice(arrayList);
+        java.lang.System.out.println(i);
         return i;
     }
 
-    //禁用模块功能
+    /**
+     * 禁用模块功能
+     * @param link_id
+     * @return
+     */
     @RequestMapping("deleteOrgmicroservice")
     @ResponseBody
-    public int deleteOrgmicroservice(String link_id){
-        ArrayList arrayList=new ArrayList();
+    public int deleteOrgmicroservice(String link_id) {
+        ArrayList arrayList = new ArrayList();
         //把json存入list
-        JSONArray jsonArray=JSONArray.fromObject(link_id);
-        for (int i=0;i<jsonArray.size();i++){
+        JSONArray jsonArray = JSONArray.fromObject(link_id);
+        for (int i = 0; i < jsonArray.size(); i++) {
             arrayList.add(jsonArray.get(i));
         }
-        int i=systemService.deleteOrgmicroservice(arrayList);
+        int i = systemService.deleteOrgmicroservice(arrayList);
         return i;
     }
 
-    //添加功能模块
+    /**
+     * 添加功能模块
+     * @param urlname
+     * @param headico
+     * @param ifvial
+     * @param shouName
+     * @param session
+     * @return
+     */
     @RequestMapping("addneweatures")
-    public ModelAndView addnewfeatures(String urlname, String headico, String ifvial, String shouName, HttpSession session){
-        ModelAndView modelAndView=new ModelAndView();
-        int deptid=(int)session.getAttribute("deptid");
+    public ModelAndView addnewfeatures(String urlname, String headico, String ifvial, String shouName, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        int deptid = (int) session.getAttribute("deptid");
         java.lang.System.out.println(deptid);
-        System system=new System(deptid,"民政服务",urlname,headico,shouName,ifvial);
+        System system = new System(deptid, "民政服务", urlname, headico, shouName, ifvial);
         java.lang.System.out.println(urlname);
         java.lang.System.out.println(headico);
         java.lang.System.out.println(ifvial);
-        int i=systemService.addnewFeatures(system);
+        int i = systemService.addnewFeatures(system);
         //查询民政
-        List systemList=systemService.selectSystem();
+        List systemList = systemService.selectSystem();
         //java.lang.System.out.println(systemList);
         //查询公安
-        List policeList=systemService.selectPliceSystem();
-        modelAndView.addObject("policeSystem",policeList);
+        List policeList = systemService.selectPliceSystem();
+        modelAndView.addObject("policeSystem", policeList);
         java.lang.System.err.println(policeList);
-        modelAndView.addObject("systemList",systemList);
+        modelAndView.addObject("systemList", systemList);
         modelAndView.setViewName("WEB-INF/navigation/newnavigation");
         return modelAndView;
 
     }
 
-    //显示添加功能模块页面
+    /**
+     * 显示添加功能模块页面
+     * @return
+     */
     @RequestMapping("addPoliceVie")
-    public ModelAndView addPoliceVie(){
-        ModelAndView modelAndView=new ModelAndView();
-        List systemList=systemService.selectPliceSystem();
-        java.lang.System.out.println(systemList);
-        modelAndView.addObject("systemList",systemList);
+    public ModelAndView addPoliceVie() {
+        ModelAndView modelAndView = new ModelAndView();
+        List systemList = systemService.selectPliceSystem();
+        modelAndView.addObject("systemList", systemList);
         modelAndView.setViewName("WEB-INF/microservice/Orgaddmicroservice");
         return modelAndView;
     }
 
-    //公安
+    /**
+     * 查询所有的公安部门
+     * @return
+     */
     @RequestMapping("deletePoliceVie")
-    public ModelAndView deletePoliceVie(){
-        ModelAndView modelAndView=new ModelAndView();
-        List systemList=systemService.selectPliceSystem();
-        java.lang.System.out.println(systemList);
-        modelAndView.addObject("systemList",systemList);
+    public ModelAndView deletePoliceVie() {
+        ModelAndView modelAndView = new ModelAndView();
+        List systemList = systemService.selectPliceSystem();
+        modelAndView.addObject("systemList", systemList);
         modelAndView.setViewName("WEB-INF/microservice/Orgdeletemicroservice");
         return modelAndView;
     }
 
-    //添加公安功能模块
+    /**
+     * 添加公安功能模块
+     * @param urlname
+     * @param headico
+     * @param ifvial
+     * @param shouName
+     * @return
+     */
     @RequestMapping("addPoliceeatures")
-    public ModelAndView addPolicefeatures(String urlname,String headico,String ifvial,String shouName){
-        ModelAndView modelAndView=new ModelAndView();
-        System system=new System(222,"民政服务",urlname,headico,shouName,ifvial);
+    public ModelAndView addPolicefeatures(String urlname, String headico, String ifvial, String shouName) {
+        ModelAndView modelAndView = new ModelAndView();
+        System system = new System(222, "民政服务", urlname, headico, shouName, ifvial);
         java.lang.System.out.println(urlname);
         java.lang.System.out.println(headico);
         java.lang.System.out.println(ifvial);
-        int i=systemService.addnewFeatures(system);
+        int i = systemService.addnewFeatures(system);
         modelAndView.setViewName("WEB-INF/system");
         return modelAndView;
     }
-
 
 
 }

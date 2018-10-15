@@ -1,9 +1,5 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: shenbiao
-  Date: 2017/3/1
-  Time: 15:17
-  To change this template use File | Settings | File Templates.
+  源文件
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
