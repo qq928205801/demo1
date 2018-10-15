@@ -63,8 +63,8 @@
                             <%--<h4 class="weui-media-box__title ">信州区东岳路47号</h4>--%>
                             <%--<p class="weui-media-box__desc" style="font-size: 10px">门牌管理单位:上饶市公安局</p>--%>
 
-                            <p><span style="color:#0048b2">地址名称</span>&nbsp;&nbsp;<span style="color: #999999">信州区东岳路47号</span></p>
-                            <span style="color:#0048b2">公安管辖</span>&nbsp;&nbsp;<span style="color: #999999">信州区信州派出所</span>
+                            <p><span style="color:#0048b2">地名</span>&nbsp;&nbsp;<span style="color: #999999">广信大道118号</span></p>
+                            <span style="color:#0048b2">公安管辖</span>&nbsp;&nbsp;<span style="color: #999999">上饶市公安局</span>
                         </div>
                     </a>
 
