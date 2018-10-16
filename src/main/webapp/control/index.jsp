@@ -47,7 +47,7 @@
                         </dd>
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'deptUserList.jsp',icon:'&#xe6c6;',title:'部门用户列表',id:'2'}">
-                                <%--<i class="layui-icon">&#xe6c6;</i>--%><span> 部门用户列表</span></a>
+                                <i class="layui-icon">&#xe6c6;</i><span> 部门用户列表</span></a>
                         </dd>
                         </c:if>
 

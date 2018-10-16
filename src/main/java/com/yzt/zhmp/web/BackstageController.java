@@ -291,22 +291,27 @@ public class BackstageController {
                             backstageService.saveDisUser(disUser);
                         }
 
-                        model.addAttribute("msg", "用户添加成功");
+//                        model.addAttribute("msg", "用户添加成功");
+                        model.addAttribute("status","用户添加成功");
                         return "control/form";
                     } else {
-                        model.addAttribute("msg", "用户名或密码不能为空");
+//                        model.addAttribute("msg", "用户名或密码不能为空");
+                        model.addAttribute("status","用户名或密码不能为空");
                         return "control/form";
                     }
                 } else {
-                    model.addAttribute("msg", "账户已失效，请重新登陆<br><a href='http://localhost:8080/control/index' target='_blank'>点击跳转重新登陆</a>");
+//                    model.addAttribute("msg", "账户已失效，请重新登陆<br><a href='http://localhost:8080/control/index' target='_blank'>点击跳转重新登陆</a>");
+                    model.addAttribute("status","账户已失效，请重新登陆");
                     return "control/form";
                 }
             } else {
-                model.addAttribute("msg", "用户名已存在");
+                model.addAttribute("status","用户名已存在");
+//                model.addAttribute("msg", "用户名已存在");
                 return "control/form";
             }
         } else {
-            model.addAttribute("msg", "用户名密码不能为空");
+            model.addAttribute("status","用户名密码不能为空");
+//            model.addAttribute("msg", "用户名密码不能为空");
             return "control/form";
         }
     }
