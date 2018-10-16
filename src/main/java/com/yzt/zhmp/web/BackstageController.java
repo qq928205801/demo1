@@ -5,19 +5,15 @@ import com.yzt.zhmp.service.BackstageService;
 import com.yzt.zhmp.service.CollectionSystemService;
 import com.yzt.zhmp.utils.MD5Utils;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.tools.JavaCompiler;
 import java.io.IOException;
-import java.lang.System;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -75,8 +71,6 @@ public class BackstageController {
         String discode = "";
         User existUser = null;
         existUser = (User) request.getSession().getAttribute("existUser");
-        java.lang.System.out.println(name);
-        java.lang.System.out.println(password);
         if (existUser == null) {
             //判断用户存不存在
             User user = new User();
@@ -84,7 +78,6 @@ public class BackstageController {
             if (password != null) {
                 user.setPassword(MD5Utils.md5(password));
             }
-            java.lang.System.out.println(user);
             existUser = backstageService.login(user);
             //将用户信息存入session
             try {
@@ -95,11 +88,9 @@ public class BackstageController {
                 request.setAttribute("error", "账号或密码错误");
                 return "control/login01";
             }
-
         }
         if (existUser == null) {
             request.setAttribute("error", "账号或密码错误");
-            java.lang.System.out.println(existUser);
             return "control/login01";
         } else {
             Integer usrid = existUser.getUsrid();
@@ -133,7 +124,6 @@ public class BackstageController {
                 //代表管理员账号,查询所有省显示
                 String str = discode.substring(2, 6);
                 List<District> districts = backstageService.selectAllArea(discode);
-                java.lang.System.out.println(districts);
                 //代表是管理员账号,可以添加省级账号
                 model.addAttribute("mark", "省级");
                 model.addAttribute("districts", districts);
@@ -154,7 +144,6 @@ public class BackstageController {
             } else if (discode.substring(6, 9).equals("000")) {
                 model.addAttribute("mark", "乡镇级");
                 List<District> districts = backstageService.selectAllArea(discode);
-                //java.lang.System.out.println(districts);
                 model.addAttribute("districts", districts);
                 request.getSession().setAttribute("districts", districts);
             } else if (discode.substring(9, 12).equals("000")) {
@@ -199,7 +188,6 @@ public class BackstageController {
         //获取对应的区域
         String disCode = backstageService.findDisCode(usrid);
         List<DisUserAddDisName> disUsers = collectionSystemService.selectUserByuserid(usrid);
-        java.lang.System.out.println(disUsers);
         int count = disUsers.size();
         JSONArray jsonArray = JSONArray.fromObject(disUsers);
         response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
@@ -238,7 +226,6 @@ public class BackstageController {
     public String registered(String username, String password, Integer deptID, String disCode, Model model,
                              HttpServletResponse response, HttpServletRequest request) throws IOException {
         User existUser = (User) request.getSession().getAttribute("existUser");
-        JSONObject json = new JSONObject();
         if (username != null & username != "" && password != null && password != "") {
             Integer checkExist = backstageService.selectUserId(username);
             if (checkExist == null) {
@@ -253,8 +240,6 @@ public class BackstageController {
                         backstageService.registered(user);
                         //保存后再查询对应保存生成的id
                         Integer usrID = backstageService.selectUserId(username);
-                        java.lang.System.out.println(usrID);
-                        java.lang.System.out.println(disCode);
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                         if (deptID != null) {
                             //说明创建的是部门用户
@@ -269,7 +254,6 @@ public class BackstageController {
                             backstageService.saveDeptUser(deptUser);
                         }
                         if (disCode.length() > 0) {
-                            java.lang.System.out.println(disCode);
                             DisUser disUser = new DisUser();
                             disUser.setPriviligetime(sdf.format(new Date()));
                             disUser.setPriviusrid(priviusrid);

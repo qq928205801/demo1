@@ -1,4 +1,4 @@
-package com.yzt.zhmp.web.UserWeb;
+package com.yzt.zhmp.web;
 
 import com.yzt.zhmp.beans.Cbuilding;
 import com.yzt.zhmp.beans.User;
@@ -21,7 +21,7 @@ import java.util.List;
 public class UserLoginController {
 
     @Autowired
-    UserLoginService userLoginService;
+    private UserLoginService userLoginService;
 
     @Autowired
     private SystemService systemService;
@@ -43,10 +43,8 @@ public class UserLoginController {
         ModelAndView modelAndView = new ModelAndView();
 
         User existUser = (User) session.getAttribute("existUser");
-        System.err.println(existUser);
         //查找用户对应的部门id
         int deptId = userLoginService.selectByUserid(existUser.getUsrid());
-        System.out.println(deptId);
         if (deptId == 111) {
             List systemList = systemService.selectSystem();
             modelAndView.addObject("systemList", systemList);
@@ -54,7 +52,6 @@ public class UserLoginController {
             List policeSystem = systemService.selectPliceSystem();
             modelAndView.addObject("policeSystem", policeSystem);
         }
-        System.out.println(deptId);
         modelAndView.addObject("deptid", deptId);
         //把部门id存到session中以便在其他页面判断
         session.setAttribute("deptid", deptId);
@@ -80,7 +77,6 @@ public class UserLoginController {
 
         User existUser = userLoginService.login(user);
         session.setAttribute("existUser", existUser);
-        System.out.println(existUser);
 
         if (existUser == null) {
             modelAndView.addObject("error", "账号或密码错误");
@@ -89,14 +85,11 @@ public class UserLoginController {
             return modelAndView;
         }
 
-
         //查看角色权限字段
         List<String> fileName = userLoginService.rolelogin(existUser.getUsrid());
-        System.out.println(fileName);
 
         //查看此用户是否有从此建筑权限
         List<String> buid = userLoginService.selectBuidbyUserId(existUser.getUsrid());
-        System.out.println(buid);
         //声明字段  为1时用户和建筑有关联
         int bfid = 0;
         for (String s : buid) {
@@ -106,16 +99,10 @@ public class UserLoginController {
         }
         session.setAttribute("bfid", bfid);
 
-
         //暂未用到
         //查看用户角色id
         List<String> fildId = userLoginService.selectFileIdByUserid(existUser.getUsrid());
-        System.out.println(fildId);
-
         session.setAttribute("fildId", fildId);
-
-        System.err.println(fildId);
-
         try {
             //查找用户对应的部门id
             int deptid = userLoginService.selectByUserid(existUser.getUsrid());
@@ -127,11 +114,9 @@ public class UserLoginController {
 
         //暂定为330727
         List allList = systemService.selectAll("330727");
-        //  java.lang.System.out.println(allList);
         modelAndView.addObject("allList", allList);
         //显示农户信息
         Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
-        System.out.println(cbuilding.getIfOpen());
         modelAndView.addObject("building", cbuilding);
 
         session.setAttribute("existUser", existUser);
@@ -157,7 +142,6 @@ public class UserLoginController {
         user.setPassword(MD5Utils.md5(password));
         user.setName(name);
         User existUser = userLoginService.login(user);
-        System.out.println(existUser);
 
 
         if (existUser == null) {
@@ -166,17 +150,10 @@ public class UserLoginController {
             modelAndView.setViewName("WEB-INF/login/login");
             return modelAndView;
         }
-
-        System.out.println(existUser.getUsrid());
-
-
         //查看角色权限字段
         List<String> fileName = userLoginService.rolelogin(existUser.getUsrid());
-        System.out.println(fileName);
-
         //查看此用户是否有从此建筑权限
         List<String> buid = userLoginService.selectBuidbyUserId(existUser.getUsrid());
-        System.out.println(buid);
 
         //声明字段  为1时用户和建筑有关联
         int bfid = 0;
@@ -193,18 +170,14 @@ public class UserLoginController {
         for (String s : fildId) {
             if ("2".equals(s)) police = 2;
         }
-        System.out.println(fildId);
         session.setAttribute("police", police);
         session.setAttribute("fildId", fildId);
 
         //暂定为330727  根据地区码显示政府服务功能模块
         List allList = systemService.selectAll("361100");
-        //  java.lang.System.out.println(allList);
         modelAndView.addObject("allList", allList);
-        System.out.println(allList);
         //显示农户建筑信息根据建筑id
         Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
-        System.out.println(cbuilding.getIfOpen());
         modelAndView.addObject("building", cbuilding);
 
         session.setAttribute("existUser", existUser);

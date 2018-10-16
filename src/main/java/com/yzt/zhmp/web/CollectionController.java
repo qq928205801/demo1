@@ -36,7 +36,6 @@ public class CollectionController {
         ModelAndView modelAndView = new ModelAndView();
         String discode = (String) request.getSession().getAttribute("discode");
         cbuilding.setDisCode(discode);
-        java.lang.System.out.println(cbuilding);
         int i = collectionSystemService.addFarmerInfo(cbuilding);
         String msg = "添加失败";
         if (i == 1) {
@@ -61,7 +60,6 @@ public class CollectionController {
 
         String discode = (String) request.getSession().getAttribute("discode");
         cdistrict.setDisCode(discode);
-        java.lang.System.out.println(discode);
         int i = collectionSystemService.addCountyInfo(cdistrict);
         if (i == 1) {
             String msg = "添加成功";
@@ -84,7 +82,6 @@ public class CollectionController {
     @RequestMapping("/control/deleteCbuilding")
     public int deleteCbuilding(int msg) {
         int i = collectionSystemService.deleteCbuilidingByid(msg);
-        System.out.println(i);
         return i;
     }
 
@@ -98,9 +95,7 @@ public class CollectionController {
     @RequestMapping("/allBuilding")
     public void allCbuilding(HttpServletResponse response, HttpServletRequest request) throws IOException {
         String discode = (String) request.getSession().getAttribute("discode");
-        System.out.println(discode);
         List<Cbuilding> list = collectionSystemService.selectBuildingBycode(discode);
-        System.out.println(list);
         int count = list.size();
         JSONArray jsonArray = JSONArray.fromObject(list);
         response.getWriter().write("{\"code\":0,\"msg\":\"\",\"count\":" + count
@@ -119,10 +114,7 @@ public class CollectionController {
         ModelAndView modelAndView = new ModelAndView();
         String discode = (String) request.getSession().getAttribute("discode");
         cbuilding.setDisCode(discode);
-        System.out.println(discode);
         int i = collectionSystemService.updateCbuidingByfamilyType(cbuilding);
-        System.out.println(cbuilding);
-        System.out.println(i);
         String msg = "";
         if (i > 0) {
             msg = "更新成功";
@@ -149,7 +141,6 @@ public class CollectionController {
         String discode = (String) request.getSession().getAttribute("discode");
         Cdistrict cdistrict = collectionSystemService.selectCdistrict(discode);
         modelAndView.addObject("cdistrict", cdistrict);
-        System.out.println(cdistrict);
         modelAndView.setViewName("control/formUpadteXianqu");
         return modelAndView;
     }
@@ -166,9 +157,7 @@ public class CollectionController {
         ModelAndView modelAndView = new ModelAndView();
         String discode = (String) request.getSession().getAttribute("discode");
         cdistrict.setDisCode(discode);
-        System.out.println(discode);
         int i = collectionSystemService.updateCdistrict(cdistrict);
-        System.out.println(i);
         if (i == 1) {
             String msg = "更新成功";
             modelAndView.addObject("msg", msg);
