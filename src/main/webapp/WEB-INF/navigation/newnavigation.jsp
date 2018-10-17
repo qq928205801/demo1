@@ -16,6 +16,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
         <title>智慧门牌服务管理</title>
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="/static/style/weui.css"/>
         <link rel="stylesheet" type="text/css" href="/static/style/example.css"/>
         <%--<script type="text/javascript" src="/static/js/zepto.min.js"></script>--%>
@@ -29,20 +30,36 @@
         <div class="page">
 
         <div class="pageContent" id="tpl_qrcode" style="display:block;">
-        <div class="weui-cells weui-cells_form">
+        <%--<div class="weui-cells weui-cells_form">--%>
 
-        <div class="weui-grids" onClick="javascript :history.back(-1);">
+        <%--<div class="weui-grids" onClick="javascript :history.back(-1);">--%>
 
-        <a href="system" class="weui-grid">
-        <div class="weui-grid__icon" >
-        <img src="/static/images/panan/tuichu.png" style="" alt="">
+        <%--<a href="system" class="weui-grid">--%>
+        <%--<div class="weui-grid__icon" >--%>
+        <%--<img src="/static/images/panan/tuichu.png" style="" alt="">--%>
 
+        <%--</div>--%>
+        <%--<p class="weui-grid__label">退出</p>--%>
+        <%--</a>--%>
+
+        <%--<--%>
+
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--头部--%>
+        <div class="row top">
+        <div class="col-xs-3 heig" onClick="history.back(-1);">
+
+        <span class="glyphicon glyphicon-arrow-left"></span>
         </div>
-        <p class="weui-grid__label">退出</p>
+        <div class="col-xs-6 text-center heig">后台管理</div>
+        <div class="col-xs-3 text-center heig" >
+        <c:if test="${not empty existUser}">
+        <a href="system">
+        <%--<span class="glyphicon glyphicon-cog"></span><br>--%>
+        退出
         </a>
-
-        <
-
+        </c:if>
         </div>
         </div>
         <div class="page__hd" style="height: 30px;padding-top: 0px;padding-bottom: 40px;">

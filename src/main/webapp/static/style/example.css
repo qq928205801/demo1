@@ -499,3 +499,27 @@ ul {
     -webkit-animation: b .2s forwards;
     animation: b .2s forwards
 }
+
+
+
+/*头部 返回样式*/
+.top{
+    border: 1px solid #ddd;
+}
+.top a{
+    color: #333;
+}
+.top>div{
+    cursor: pointer;
+}
+
+.heig{
+    line-height: 48px;
+
+    padding: 0;
+}
+.heig span{
+    display: inline-block;
+    line-height: 48px;
+    padding-left: 30px;
+}

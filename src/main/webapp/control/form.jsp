@@ -9,6 +9,7 @@
         添加
     </title>
     <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/layui/css/check.css" media="all">
     <style>
         .box {
             width: 20%;
@@ -134,12 +135,19 @@
             <input type="hidden" name="disCode" id="disCode" class="layui-input">
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit="" lay-filter="demo1">提交</button>
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1" >提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
 
         </form>
+    </div>
+</div>
+<%--提示层--%>
+<div id="box">
+    <div class="con">
+        <p id="txt">${status}</p>
+        <button onclick="ifhide()" class="btn">知道了</button>
     </div>
 </div>
 
@@ -148,11 +156,16 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     $(document).ready(function () {
+        var adc = '${status}'
         var menuYloc = $("#divid").offset().top;
         $(window).scroll(function () {
             var offsetTop = menuYloc + $(window).scrollTop() + "px";
             $("#divid").animate({ top: offsetTop }, { duration: 600, queue: false });
         });
+        console.log(adc);
+        if(adc.length!=0){
+            $("#box").show(500)
+        }
     });
     function changeValue(data) {
         $("#deptID").val(data);
@@ -229,6 +242,30 @@
         });
 
     });
+    // function check() {
+
+
+    <%--if(${status}==1){--%>
+    //     $("#box").show(500)
+        <%--$("#txt").text("用户添加成功")--%>
+    <%--}else if (${status}==2){--%>
+        <%--$("#box").show(500)--%>
+        <%--$("#txt").text("用户名或密码不能为空")--%>
+    <%--} else if (${status}==3){--%>
+        <%--$("#box").show(500)--%>
+        <%--$("#txt").text("账户已失效，请重新登陆")--%>
+    <%--}else if (${status}==4){--%>
+        <%--$("#box").show(500)--%>
+        <%--$("#txt").text("用户名已存在")--%>
+    <%--}--%>
+    <%--else {--%>
+        <%--$("#box").show(500)--%>
+        <%--$("#txt").text("用户名密码不能为空")--%>
+    <%--}--%>
+    // }
+    function ifhide(){
+        $("#box").hide(500)
+    }
 </script>
 
 

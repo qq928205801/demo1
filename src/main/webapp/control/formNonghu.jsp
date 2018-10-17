@@ -9,6 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/layui/css/check.css" media="all">
+    <script src="../static/js/jquery-1.10.2.min.js"></script>
+    <script src="./plugins/layui/layui.js"></script>
+
 </head>
 
 <body>
@@ -18,19 +22,20 @@
     <legend>添加农户信息</legend>
 </fieldset>
 
-<form class="layui-form" id="mytable" action="addFarmerBuildingInfo" method="post">
+<form class="layui-form" id="mytable" action="addFarmerBuildingInfo" method="post" onsubmit="return check()">
     <div class="layui-form-item layui-form" style="width: 300px;">
         <label class="layui-form-label">户主姓名</label>
         <div class="layui-input-block">
             <input type="text" name="name" autocomplete="off" placeholder="请输入户主姓名"
-                   class="layui-input" required>
+                   class="layui-input" required onkeyup="this.value=this.value.replace(/\s+/g, '')">
         </div>
     </div>
     <div class="layui-form-item" style="width: 300px;">
         <label class="layui-form-label">联系电话</label>
         <div class="layui-input-block">
             <input type="text" id="phoneNum" name="phoneNum" autocomplete="off" placeholder="请输入联系电话"
-                   class="layui-input" required onblur="checkPhoneNum()">
+                   class="layui-input" required
+                   onkeyup="this.value=this.value.replace(/\D+/g,'')">
             <span id="phoneNum1" style="color: red"></span>
         </div>
     </div>
@@ -39,13 +44,15 @@
         <div class="layui-inline">
             <label class="layui-form-label">门牌编号</label>
             <div class="layui-input-inline">
-                <input type="tel" name="familyType" autocomplete="off" class="layui-input" required>
+                <input type="tel" name="familyType" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\s+/g,'')">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">家庭人口</label>
             <div class="layui-input-inline">
-                <input type="text" name="population" autocomplete="off" class="layui-input" required>
+                <input type="text" name="population" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
     </div>
@@ -54,13 +61,15 @@
         <div class="layui-inline">
             <label class="layui-form-label">房屋间数</label>
             <div class="layui-input-inline">
-                <input type="text" name="roomNum" autocomplete="off" class="layui-input" required>
+                <input type="text" name="roomNum" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">楼层层数</label>
             <div class="layui-input-inline">
-                <input type="text" name="floorNum" autocomplete="off" class="layui-input" required>
+                <input type="text" name="floorNum" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
 
@@ -70,19 +79,22 @@
         <div class="layui-inline">
             <label class="layui-form-label">占地面积</label>
             <div class="layui-input-inline">
-                <input type="text" name="landArea" autocomplete="off" class="layui-input" required>
+                <input type="text" name="landArea" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\s+/g, '')">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">建筑面积</label>
             <div class="layui-input-inline">
-                <input type="text" name="buildArea" autocomplete="off" class="layui-input" required>
+                <input type="text" name="buildArea" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\s+/g, '')">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">建筑年份</label>
             <div class="layui-input-inline">
-                <input type="text" name="buildingYear" autocomplete="off" class="layui-input" required>
+                <input type="text" name="buildingYear" id="buildingYear" autocomplete="off" class="layui-input" required
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
 
@@ -108,25 +120,35 @@
                 <input type="radio" name="ifOpen" value="2" title="私密">
             </div>
         </div>
+        <%--<div class="layui-form-item">--%>
+            <%--<label class="layui-form-label">农户信息是否公开</label>--%>
+            <%--<div class="layui-input-block">--%>
+                <%--<input type="radio" name="ifOpen" value="1" title="公开" checked="">--%>
+                <%--<input type="radio" name="ifOpen" value="2" title="私密">--%>
+            <%--</div>--%>
+        <%--</div>--%>
     </div>
     <%--农家乐,民宿的时候显示以下内容--%>
     <div class="layui-form-item layui-hide" id="inputBox1">
         <div class="layui-inline">
             <label class="layui-form-label">客房数</label>
             <div class="layui-input-inline">
-                <input type="text" name="numberOfRoom" autocomplete="off" class="layui-input">
+                <input type="text" name="numberOfRoom" autocomplete="off" class="layui-input"
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">床位数</label>
             <div class="layui-input-inline">
-                <input type="text" name="numberOfBed" autocomplete="off" class="layui-input">
+                <input type="text" name="numberOfBed" autocomplete="off" class="layui-input"
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">餐位数</label>
             <div class="layui-input-inline">
-                <input type="text" name="mealDigits" autocomplete="off" class="layui-input">
+                <input type="text" name="mealDigits" autocomplete="off" class="layui-input"
+                       onkeyup="this.value=this.value.replace(/\D+/g,'')">
             </div>
         </div>
         <br>
@@ -155,14 +177,27 @@
         </div>
     </div>
     <div class="layui-input-block">
-        <button id="submitButton" class="layui-btn" <%--lay-submit=""--%> <%--lay-filter="demo1"--%> onclick="commitForm()">立即提交</button>
+        <button id="submitButton" class="layui-btn" <%--lay-submit=""--%> <%--lay-filter="demo1"--%> type="submit">立即提交</button>
         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
     </div>
 </form>
-<script src="./plugins/layui/layui.js"></script>
-<script src="../static/js/jquery-1.10.2.min.js"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+    <%--提示层--%>
+    <div id="box">
+        <div class="con">
+            <p id="txt">电话输入有误！</p>
+            <button onclick="ifhide()" class="btn">知道了</button>
+        </div>
+    </div>
+    <%--<button id="show" onclick="ifshow()">显示隐藏</button>--%>
+<%--<div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">--%>
+
+
+    <%--<button data-method="confirmTrans" class="layui-btn">配置一个透明的询问框</button>--%>
+
+<%--</div>--%>
+
 <script>
     var category = 0;
     var categoryName = '';
@@ -174,16 +209,16 @@
         }
     };
 
-    function checkPhoneNum() {
-        var phoneNum = $("#phoneNum").val();
-        if (phoneNum.length!=11&&phoneNum.length!=0){
-            $("#phoneNum1").text("手机号格式错误");
-        }else if (phoneNum.length==0) {
-            $("#phoneNum1").text("");
-        }else{
-            $("#phoneNum1").text("");
-        }
-    };
+    // function checkPhoneNum() {
+    //     var phoneNum = $("#phoneNum").val();
+    //     if (phoneNum.length!=11&&phoneNum.length!=0){
+    //         $("#phoneNum1").text("手机号格式错误");
+    //     }else if (phoneNum.length==0) {
+    //         $("#phoneNum1").text("");
+    //     }else{
+    //         $("#phoneNum1").text("");
+    //     }
+    // };
 
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form,
@@ -231,6 +266,49 @@
             }
         });
     });
+
+//    表单验证
+    function check(){
+        var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if(myreg.test($("#phoneNum").val())){
+            if($("#buildingYear").length==4){
+                return true;
+            }else {
+                $("#box").show(500)
+                $("#txt").text("年份输入错误！")
+                return false;
+            }
+        }else {
+            $("#box").show(500)
+            $("#txt").text("手机号输入错误！")
+            return false;
+
+        }
+    }
+    function ifhide(){
+        $("#box").hide(500)
+    }
+    // function ifshow(){
+    //     $("#box").hide(1000)
+    // }
+
+
+        // //触发事件
+        // var active = {
+        //
+        //     confirmTrans: function(){
+        //         //配置一个透明的询问框
+        //         layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+        //             time: 20000, //20s后自动关闭
+        //             btn: ['知道了','我懂了']
+        //         });
+        //     }
+        // };
+        //
+        // $('#layerDemo .layui-btn').on('click', function(){
+        //     var othis = $(this), method = othis.data('method');
+        //     active[method] ? active[method].call(this, othis) : '';
+        // });
 
 </script>
 

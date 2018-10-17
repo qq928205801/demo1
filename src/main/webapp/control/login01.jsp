@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="<%=basePath%>/control/plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/layui/css/check.css" media="all">
+    <script src="./plugins/layui/layui.js"></script>
+    <script src="../static/js/jquery-1.10.2.min.js"></script>
 </head>
 <script src="<%=basePath%>/control/plugins/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -77,14 +80,26 @@
         </div>
     </form>
 </div>
+
+<%--提示层--%>
+<div id="box">
+    <div class="con">
+        <p id="txt">${error}</p>
+        <button onclick="ifhide()" class="btn">知道了</button>
+    </div>
+</div>
 <script>
-    window.onload = function () {
+    //window.onload = function () {
         var msg = '${error}';
         if (msg.length > 0) {
-            alert(msg);
+            console.log(msg)
+            $("#box").show(500)
         }
-    };
 
+    //};
+    function ifhide(){
+        $("#box").hide(500)
+    }
 
 </script>
 </body>
