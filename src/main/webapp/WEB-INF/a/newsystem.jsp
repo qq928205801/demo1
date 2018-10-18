@@ -18,6 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>智慧门牌服务管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/static/style/weui.css"/>
     <link rel="stylesheet" type="text/css" href="/static/style/example.css"/>
     <%--<script type="text/javascript" src="/static/js/zepto.min.js"></script>--%>
@@ -58,7 +59,7 @@
 
     <div class="pageContent" id="tpl_qrcode" style="display:block;">
         <div class="weui-panel weui-panel_access">
-            <p style="text-align: center;font-family: 华文隶书;font-size: 20px">群山之祖，诸水之源，大美磐安</p>
+            <p style="text-align: center;font-family: 华文隶书;font-size: 22px">群山之祖，诸水之源，大美磐安</p>
         </div>
         <div class="weui-panel weui-panel_access">
 
@@ -79,8 +80,9 @@
 
         </div>
 
-
-        <div class="weui-cells weui-cells_form" style="height:30%;margin-top: 10px">
+    <%--地图--%>
+        <div class="weui-cells weui-cells_form map" style="height:30%;margin-top: 10px">
+        <div class="maps"></div>
 
 
             <div id="container" tabindex="0"></div>
@@ -111,42 +113,77 @@
         </div>
         <div class="weui-panel weui-panel_access" style="padding-top: 10px">
 
+        <%--分类--%>
+            <%--<div class="weui-grids">--%>
 
-            <div class="weui-grids">
+                <%--<a href="javascript:void(0);" id="fangwu" class="weui-grid">--%>
+                    <%--<div class="weui-grid__icon">--%>
+                        <%--<img src="/static/images/panan/diming.png" style="" alt="">--%>
 
-                <a href="javascript:void(0);" id="fangwu" class="weui-grid">
-                    <div class="weui-grid__icon">
-                        <img src="/static/images/panan/diming.png" style="" alt="">
+                    <%--</div>--%>
+                    <%--<p class="weui-grid__label">地名信息</p>--%>
+                <%--</a>--%>
 
-                    </div>
-                    <p class="weui-grid__label">地名信息</p>
-                </a>
+                <%--<a href="zhengfufuwu" class="weui-grid" id="engfu">--%>
+                    <%--<div class="weui-grid__icon">--%>
+                        <%--<img src="/static/images/zhengfu2.png" style="" alt="">--%>
 
-                <a href="zhengfufuwu" class="weui-grid" id="engfu">
-                    <div class="weui-grid__icon">
-                        <img src="/static/images/zhengfu2.png" style="" alt="">
+                    <%--</div>--%>
+                    <%--<p class="weui-grid__label">政府服务</p>--%>
+                <%--</a>--%>
 
-                    </div>
-                    <p class="weui-grid__label">政府服务</p>
-                </a>
+                <%--<a href="xiangguanlianjie" class="weui-grid" id="ngguan">--%>
+                    <%--<div class="weui-grid__icon">--%>
+                        <%--<img src="/static/images/menpai/xiangguan.png" style="" alt="">--%>
 
-                <a href="xiangguanlianjie" class="weui-grid" id="ngguan">
-                    <div class="weui-grid__icon">
-                        <img src="/static/images/menpai/xiangguan.png" style="" alt="">
+                    <%--</div>--%>
+                    <%--<p class="weui-grid__label">相关连接</p>--%>
+                <%--</a>--%>
+                <%--<a href="zhoubianfankui" class="weui-grid" id="kl">--%>
+                    <%--<div class="weui-grid__icon">--%>
+                        <%--<img src="/static/images/menpai/zhoubian.png" style="" alt="">--%>
 
-                    </div>
-                    <p class="weui-grid__label">相关连接</p>
-                </a>
-                <a href="zhoubianfankui" class="weui-grid" id="kl">
-                    <div class="weui-grid__icon">
-                        <img src="/static/images/menpai/zhoubian.png" style="" alt="">
-
-                    </div>
-                    <p class="weui-grid__label">周边反馈</p>
-                </a>
+                    <%--</div>--%>
+                    <%--<p class="weui-grid__label">周边反馈</p>--%>
+                <%--</a>--%>
 
 
-            </div>
+            <%--</div>--%>
+    <div class="row">
+
+    <a href="javascript:void(0);" id="fangwu" class="col-xs-3">
+    <div class="weui-grid__icon">
+    <img src="/static/images/panan/diming.png" style="" alt="">
+
+    </div>
+    <p class="weui-grid__label">地名信息</p>
+    </a>
+
+    <a href="zhengfufuwu" class="col-xs-3" id="engfu">
+    <div class="weui-grid__icon">
+    <img src="/static/images/zhengfu2.png" style="" alt="">
+
+    </div>
+    <p class="weui-grid__label">政府服务</p>
+    </a>
+
+    <a href="xiangguanlianjie" class="col-xs-3" id="ngguan">
+    <div class="weui-grid__icon">
+    <img src="/static/images/menpai/xiangguan.png" style="" alt="">
+
+    </div>
+    <p class="weui-grid__label">相关连接</p>
+    </a>
+    <a href="zhoubianfankui" class="col-xs-3" id="kl">
+    <div class="weui-grid__icon">
+    <img src="/static/images/menpai/zhoubian.png" style="" alt="">
+
+    </div>
+    <p class="weui-grid__label">周边反馈</p>
+    </a>
+
+
+    </div>
         </div>
 
 
@@ -296,12 +333,12 @@
         <br><br><br><br>
 
 
-        <c:if test="${empty existUser}">
-            <a href="pananlogin" class="weui-btn weui-btn_primary">用户登录</a>
-        </c:if>
-        <c:if test="${not empty existUser}">
-            <a href="system" class="weui-btn weui-btn_primary">退出登录</a>
-        </c:if>
+    <c:if test="${empty existUser}">
+        <a href="login" class="btn btn-success btn-block btn-lg">用户登录</a>
+    </c:if>
+    <c:if test="${not empty existUser}">
+        <a href="system" class="btn btn-danger btn-block btn-lg">退出登录</a>
+    </c:if>
     </div>
 
 

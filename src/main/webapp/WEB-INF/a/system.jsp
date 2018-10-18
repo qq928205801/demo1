@@ -46,6 +46,7 @@
             border: 0;
             background-color: white;
         }
+
     </style>
 
 </head>
@@ -91,7 +92,9 @@
             </tr>
         </table>
     </div>
-<div class="weui-cells weui-cells_form" style="height:40%">
+    <%--地图--%>
+<div class="weui-cells weui-cells_form map" style="height:40%">
+    <div class="maps"></div>
     <div class="weui-cell">
         <div class="weui-cell__bd">
             <textarea class="weui-textarea" id='input' value='点击地图显示地址' rows="3"></textarea>
@@ -103,6 +106,7 @@
 
     <div id="container" tabindex="0"></div>
 </div>
+    <%--地名信息--%>
     <div class="weui-panel weui-panel_access">
         <div class="weui-form-preview">
             <%--<h2 class="poiname">安福寺</h2>--%>
