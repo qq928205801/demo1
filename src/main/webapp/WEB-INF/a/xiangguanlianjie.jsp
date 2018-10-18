@@ -78,7 +78,7 @@
 
                         <span class="glyphicon glyphicon-arrow-left"></span>
                     </div>
-                    <div class="col-xs-6 text-center heig">相关链接</div>
+                    <div class="col-xs-6 text-center heig"><b>相关链接</b></div>
                     <div class="col-xs-3 text-center heig" >
                         <%--<c:if test="${not empty existUser}">--%>
                             <%--<a href="pananHouTai">--%>
