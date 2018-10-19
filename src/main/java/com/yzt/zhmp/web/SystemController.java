@@ -2,11 +2,13 @@ package com.yzt.zhmp.web;
 
 import com.yzt.zhmp.beans.Cbuilding;
 import com.yzt.zhmp.beans.System;
+import com.yzt.zhmp.beans.User;
 import com.yzt.zhmp.service.CollectionSystemService;
 import com.yzt.zhmp.service.SystemService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,30 +30,11 @@ public class SystemController {
     /**
      * 手机端首页
      *
-     * @param request
      * @return
      */
     @RequestMapping("system")
-    public ModelAndView system(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-
-
-       /* request.getSession().invalidate();
-        String discode = "330727 ";
-        //显示政府服务分类
-        List<String> deptName = systemService.selectDeptNamebuDisCode(discode);
-
-        request.getSession().setAttribute("deptName", deptName);
-        //
-        List allList = systemService.selectAll(discode);
-        request.getSession().setAttribute("allList", allList);
-        //显示农户信息
-        Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
-
-        modelAndView.addObject("building", cbuilding);*/
-
-        modelAndView.setViewName("WEB-INF/a/newsystem");
-        return modelAndView;
+    public String system() {
+        return "WEB-INF/a/newsystem";
     }
 
     /**
@@ -61,9 +44,9 @@ public class SystemController {
      * @return
      */
     @RequestMapping("zhengfufuwu")
-    public ModelAndView zhengfufuwu(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-        request.getSession().invalidate();
+    public String zhengfufuwu(HttpServletRequest request, Model model) {
+        User existUser1 = (User) request.getSession().getAttribute("existUser1");
+        model.addAttribute(existUser1);
         String discode = "330727 ";
         //显示政府服务分类
         List<String> deptName = systemService.selectDeptNamebuDisCode(discode);
@@ -75,9 +58,8 @@ public class SystemController {
         //显示农户信息
         Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
 
-        modelAndView.addObject("building", cbuilding);
-        modelAndView.setViewName("WEB-INF/a/zhengfufuwu");
-        return modelAndView;
+        model.addAttribute("building", cbuilding);
+        return "WEB-INF/a/zhengfufuwu";
     }
 
     /**

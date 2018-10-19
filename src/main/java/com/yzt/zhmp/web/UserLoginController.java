@@ -8,9 +8,11 @@ import com.yzt.zhmp.service.UserService.UserLoginService;
 import com.yzt.zhmp.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class UserLoginController {
     public ModelAndView userLogin(String name, String password, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 
-        User existUser = (User) session.getAttribute("existUser");
+        User existUser = (User) session.getAttribute("existUser1");
         //查找用户对应的部门id
         int deptId = userLoginService.selectByUserid(existUser.getUsrid());
         if (deptId == 111) {
@@ -61,7 +63,7 @@ public class UserLoginController {
 
 
     /**
-     * 磐安县登入查询用户角色返回首页
+     * 磐安县登入查询用户角色返回首页(手机页面)
      *
      * @param name
      * @param password
@@ -69,27 +71,22 @@ public class UserLoginController {
      * @return
      */
     @RequestMapping("/usersLogin")
-    public ModelAndView usersLogin(String name, String password, HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView();
+    public String usersLogin(String name, String password, HttpSession session, Model model,HttpServletRequest request) {
+        String s1 = request.getRequestURL().toString();
+        System.out.println("路径:"+s1);
         User user = new User();
         user.setPassword(MD5Utils.md5(password));
         user.setName(name);
-
-        User existUser = userLoginService.login(user);
-        session.setAttribute("existUser", existUser);
-
-        if (existUser == null) {
-            modelAndView.addObject("error", "账号或密码错误");
-            //model.addAttribute("error","账号或密码错误");
-            modelAndView.setViewName("WEB-INF/login/login");
-            return modelAndView;
+        User existUser1 = userLoginService.login(user);
+        session.setAttribute("existUser1", existUser1);
+        if (existUser1 == null) {
+            model.addAttribute("error", "账号或密码错误");
+            return "WEB-INF/login/login";
         }
-
         //查看角色权限字段
-        List<String> fileName = userLoginService.rolelogin(existUser.getUsrid());
-
+        List<String> fileName = userLoginService.rolelogin(existUser1.getUsrid());
         //查看此用户是否有从此建筑权限
-        List<String> buid = userLoginService.selectBuidbyUserId(existUser.getUsrid());
+        List<String> buid = userLoginService.selectBuidbyUserId(existUser1.getUsrid());
         //声明字段  为1时用户和建筑有关联
         int bfid = 0;
         for (String s : buid) {
@@ -98,92 +95,31 @@ public class UserLoginController {
             }
         }
         session.setAttribute("bfid", bfid);
-
         //暂未用到
         //查看用户角色id
-        List<String> fildId = userLoginService.selectFileIdByUserid(existUser.getUsrid());
+        List<String> fildId = userLoginService.selectFileIdByUserid(existUser1.getUsrid());
         session.setAttribute("fildId", fildId);
         try {
             //查找用户对应的部门id
-            int deptid = userLoginService.selectByUserid(existUser.getUsrid());
+            int deptid = userLoginService.selectByUserid(existUser1.getUsrid());
             session.setAttribute("deptid", deptid);
         } catch (Exception e) {
 
         }
-
-
         //暂定为330727
         List allList = systemService.selectAll("330727");
-        modelAndView.addObject("allList", allList);
+        model.addAttribute("allList", allList);
         //显示农户信息
         Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
-        modelAndView.addObject("building", cbuilding);
-
-        session.setAttribute("existUser", existUser);
-        modelAndView.addObject("existUser", existUser);
-
-        modelAndView.setViewName("WEB-INF/a/newsystem");
-        return modelAndView;
+        model.addAttribute("building", cbuilding);
+        session.setAttribute("existUser1", existUser1);
+        model.addAttribute("existUser1", existUser1);
+        return "WEB-INF/a/newsystem";
     }
 
-
-    /**
-     * 上饶市 公安登入查询用户角色返回首页
-     *
-     * @param name
-     * @param password
-     * @param session
-     * @return
-     */
-    @RequestMapping("/shangraousersLogin")
-    public ModelAndView shangRaoUsersLogin(String name, String password, HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        user.setPassword(MD5Utils.md5(password));
-        user.setName(name);
-        User existUser = userLoginService.login(user);
-
-
-        if (existUser == null) {
-            modelAndView.addObject("error", "账号或密码错误");
-            //model.addAttribute("error","账号或密码错误");
-            modelAndView.setViewName("WEB-INF/login/login");
-            return modelAndView;
-        }
-        //查看角色权限字段
-        List<String> fileName = userLoginService.rolelogin(existUser.getUsrid());
-        //查看此用户是否有从此建筑权限
-        List<String> buid = userLoginService.selectBuidbyUserId(existUser.getUsrid());
-
-        //声明字段  为1时用户和建筑有关联
-        int bfid = 0;
-        for (String s : buid) {
-            if ("17".equals(s)) {
-                bfid = 1;
-            }
-        }
-        session.setAttribute("bfid", bfid);
-        //声明字段 是否为民警0为否 2为是
-        int police = 0;
-        //查看用户角色id
-        List<String> fildId = userLoginService.selectFileIdByUserid(existUser.getUsrid());
-        for (String s : fildId) {
-            if ("2".equals(s)) police = 2;
-        }
-        session.setAttribute("police", police);
-        session.setAttribute("fildId", fildId);
-
-        //暂定为330727  根据地区码显示政府服务功能模块
-        List allList = systemService.selectAll("361100");
-        modelAndView.addObject("allList", allList);
-        //显示农户建筑信息根据建筑id
-        Cbuilding cbuilding = collectionSystemService.selectBuildingByid(17);
-        modelAndView.addObject("building", cbuilding);
-
-        session.setAttribute("existUser", existUser);
-        modelAndView.addObject("existUser", existUser);
-
-        modelAndView.setViewName("WEB-INF/a/system02");
-        return modelAndView;
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpServletRequest request){
+        request.getSession().removeAttribute("existUser1");
+        return "WEB-INF/a/newsystem";
     }
 }
