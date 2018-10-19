@@ -1,7 +1,6 @@
 <%--
     磐安市主页面
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +9,7 @@
 <%
     //request.setCharacterEncoding("UTF-8");
     String path = request.getContextPath();
-    String basepath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basepath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path ;
     String userID = (String) session.getAttribute("userID");
 %>
 <html>
@@ -62,7 +61,6 @@
             <p style="text-align: center;font-family: 华文隶书;font-size: 22px">群山之祖，诸水之源，大美磐安</p>
         </div>
         <div class="weui-panel weui-panel_access">
-
             <%--<div class="weui-panel__hd">门牌信息</div>--%>
             <div class="weui-panel__bd" style="float: left">
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
@@ -80,11 +78,9 @@
 
         </div>
 
-    <%--地图--%>
+        <%--地图--%>
         <div class="weui-cells weui-cells_form map" style="height:30%;margin-top: 10px">
-        <div class="maps"></div>
-
-
+            <div class="maps"></div>
             <div id="container" tabindex="0"></div>
         </div>
 
@@ -102,88 +98,47 @@
                         </div>
                     </td>
                     <td style="font-size: 15px">
-
                         <p class="weui-panel__hd">民警姓名：厉韬</p>
                         <p class="weui-panel__hd">一键报警：<a href="tel:15179788823">15156257489</a></p>
-
                     </td>
-
                 </tr>
             </table>
         </div>
         <div class="weui-panel weui-panel_access" style="padding-top: 10px">
+            <div class="row">
 
-        <%--分类--%>
-            <%--<div class="weui-grids">--%>
+                <a href="javascript:void(0);" id="fangwu" class="col-xs-4">
+                    <div class="weui-grid__icon">
+                        <img src="/static/images/panan/diming.png" style="" alt="">
 
-                <%--<a href="javascript:void(0);" id="fangwu" class="weui-grid">--%>
-                    <%--<div class="weui-grid__icon">--%>
-                        <%--<img src="/static/images/panan/diming.png" style="" alt="">--%>
+                    </div>
+                    <p class="weui-grid__label">地名信息</p>
+                </a>
 
-                    <%--</div>--%>
-                    <%--<p class="weui-grid__label">地名信息</p>--%>
+                <a href="zhengfufuwu" class="col-xs-4" id="engfu">
+                    <div class="weui-grid__icon">
+                        <img src="/static/images/zhengfu2.png" style="" alt="">
+
+                    </div>
+                    <p class="weui-grid__label">政府服务</p>
+                </a>
+                <%--<a href="xiangguanlianjie" class="col-xs-3" id="ngguan">--%>
+                <%--<div class="weui-grid__icon">--%>
+                <%--<img src="/static/images/menpai/xiangguan.png" style="" alt="">--%>
+
+                <%--</div>--%>
+                <%--<p class="weui-grid__label">相关连接</p>--%>
                 <%--</a>--%>
+                <a href="zhoubianfankui" class="col-xs-4" id="kl">
+                    <div class="weui-grid__icon">
+                        <img src="/static/images/menpai/zhoubian.png" style="" alt="">
 
-                <%--<a href="zhengfufuwu" class="weui-grid" id="engfu">--%>
-                    <%--<div class="weui-grid__icon">--%>
-                        <%--<img src="/static/images/zhengfu2.png" style="" alt="">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="weui-grid__label">政府服务</p>--%>
-                <%--</a>--%>
-
-                <%--<a href="xiangguanlianjie" class="weui-grid" id="ngguan">--%>
-                    <%--<div class="weui-grid__icon">--%>
-                        <%--<img src="/static/images/menpai/xiangguan.png" style="" alt="">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="weui-grid__label">相关连接</p>--%>
-                <%--</a>--%>
-                <%--<a href="zhoubianfankui" class="weui-grid" id="kl">--%>
-                    <%--<div class="weui-grid__icon">--%>
-                        <%--<img src="/static/images/menpai/zhoubian.png" style="" alt="">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="weui-grid__label">周边反馈</p>--%>
-                <%--</a>--%>
+                    </div>
+                    <p class="weui-grid__label">周边反馈</p>
+                </a>
 
 
-            <%--</div>--%>
-    <div class="row">
-
-    <a href="javascript:void(0);" id="fangwu" class="col-xs-3">
-    <div class="weui-grid__icon">
-    <img src="/static/images/panan/diming.png" style="" alt="">
-
-    </div>
-    <p class="weui-grid__label">地名信息</p>
-    </a>
-
-    <a href="zhengfufuwu" class="col-xs-3" id="engfu">
-    <div class="weui-grid__icon">
-    <img src="/static/images/zhengfu2.png" style="" alt="">
-
-    </div>
-    <p class="weui-grid__label">政府服务</p>
-    </a>
-
-    <a href="xiangguanlianjie" class="col-xs-3" id="ngguan">
-    <div class="weui-grid__icon">
-    <img src="/static/images/menpai/xiangguan.png" style="" alt="">
-
-    </div>
-    <p class="weui-grid__label">相关连接</p>
-    </a>
-    <a href="zhoubianfankui" class="col-xs-3" id="kl">
-    <div class="weui-grid__icon">
-    <img src="/static/images/menpai/zhoubian.png" style="" alt="">
-
-    </div>
-    <p class="weui-grid__label">周边反馈</p>
-    </a>
-
-
-    </div>
+            </div>
         </div>
 
 
@@ -297,131 +252,21 @@
                             </c:if>
                         </c:otherwise>
                     </c:choose>
-
-
-                    <%--<c:if test="${building.ifOpen==1}">--%>
-                    <%--<div class="weui-form-preview__item">--%>
-                    <%--<label class="weui-form-preview__label">建筑面积</label>--%>
-                    <%--<span class="weui-form-preview__value">${building.buildArea}</span>--%>
-                    <%--</div>--%>
-
-                    <%--<div class="weui-form-preview__item">--%>
-                    <%--<label class="weui-form-preview__label">占地面积</label>--%>
-                    <%--<span class="weui-form-preview__value">${building.landArea}</span>--%>
-                    <%--</div>--%>
-                    <%--<div class="weui-form-preview__item">--%>
-                    <%--<label class="weui-form-preview__label">房屋间数</label>--%>
-                    <%--<span class="weui-form-preview__value">${building.roomNum}</span>--%>
-                    <%--</div>--%>
-                    <%--<div class="weui-form-preview__item">--%>
-                    <%--<label class="weui-form-preview__label">家庭人口</label>--%>
-                    <%--<span class="weui-form-preview__value">${building.population}</span>--%>
-                    <%--</div>--%>
-                    <%--</c:if>--%>
-                    <%--<c:if test="${building.ifOpen==0}">--%>
-                    <%--<div class="weui-form-preview__item">--%>
-                    <%--<label class="weui-form-preview__label">户主未公开信息</label>--%>
-
-                    <%--</div>--%>
-                    <%--</c:if>--%>
                 </div>
             </div>
 
         </div>
 
-
         <br><br><br><br>
 
-
-    <c:if test="${empty existUser}">
-        <a href="login" class="btn btn-success btn-block btn-lg">用户登录</a>
-    </c:if>
-    <c:if test="${not empty existUser}">
-        <a href="system" class="btn btn-danger btn-block btn-lg">退出登录</a>
-    </c:if>
+        <c:if test="${empty existUser1}">
+            <a href="login" class="btn btn-success btn-block btn-lg">用户登录</a>
+        </c:if>
+        <c:if test="${not empty existUser1}">
+            <a href="loginOut" onclick="loginOut()" class="btn btn-danger btn-block btn-lg">退出登录</a>
+        </c:if>
     </div>
-
-
-    <%--<div class="pageContent" id="tpl_dialogs">--%>
-    <%--<div id="dialogs">--%>
-    <%--<!--BEGIN dialog1-->--%>
-    <%--<div class="js_dialog" id="iosDialog1" style="display: none;">--%>
-    <%--<div class="weui-mask"></div>--%>
-    <%--<div class="weui-dialog">--%>
-    <%--<div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog1_title">弹窗标题</strong></div>--%>
-    <%--<div class="weui-dialog__bd" id="iosDialog1_content">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>--%>
-    <%--<div class="weui-dialog__ft">--%>
-    <%--<a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>--%>
-    <%--<a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog1_myfunction">确认</a>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<!--END dialog1-->--%>
-    <%--<!--BEGIN dialog1-->--%>
-    <%--<div class="js_dialog" id="iosDialog_input" style="display: none;">--%>
-    <%--<div class="weui-mask"></div>--%>
-    <%--<div class="weui-dialog">--%>
-    <%--<div class="weui-dialog__hd"><strong class="weui-dialog__title" id="iosDialog_input_title">弹窗标题</strong></div>--%>
-    <%--<div class="weui-dialog__bd"><input type="text" class="weui-input" placeholder="" id="iosDialog_input_content"></div>--%>
-    <%--<div class="weui-dialog__ft">--%>
-    <%--<a  class="weui-dialog__btn weui-dialog__btn_default" >取消</a>--%>
-    <%--<a  class="weui-dialog__btn weui-dialog__btn_primary" id="iosDialog_input_myfunction">确认</a>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<!--END dialog1-->--%>
-    <%--</div>--%>
-    <%--</div>--%>
 </div>
-
-
-<%--<!--导航页面-->--%>
-<%--<div class="weui-tab">--%>
-<%--<!--导航-->--%>
-<%--<div class="weui-tabbar" style="color: #9c9c9c">--%>
-<%--<!--发现-->--%>
-<%--&lt;%&ndash;<a class="weui-tabbar__item weui-bar__item_on" href="javascript:showqrcode();">&ndash;%&gt;--%>
-<%--&lt;%&ndash;<span style="display: inline-block;position: relative;">&ndash;%&gt;--%>
-<%--&lt;%&ndash;<img src="/static/images/icon_nav_layout_1.png" alt="" class="weui-tabbar__icon">&ndash;%&gt;--%>
-<%--&lt;%&ndash;<span class="weui-badge weui-badge_dot"&ndash;%&gt;--%>
-<%--&lt;%&ndash;style="position: absolute;top: 0;right: -6px;display: none"></span>&ndash;%&gt;--%>
-<%--&lt;%&ndash;</span>&ndash;%&gt;--%>
-
-<%--&lt;%&ndash;<p class="weui-tabbar__label">二维码管理</p>&ndash;%&gt;--%>
-<%--&lt;%&ndash;</a>&ndash;%&gt;--%>
-
-<%--<!--我-->--%>
-<%--<a class="weui-tabbar__item weui-bar__item_on " href="javascript:showqrcode();">--%>
-<%--<span style="display: inline-block;position: relative;"></span>--%>
-<%--<img src="/static/images/menpai/shouye.png" alt="" class="weui-tabbar__icon">--%>
-<%----%>
-<%--<p class="weui-tabbar__label" style="color: #9c9c9c">首页</p>--%>
-<%--</a>--%>
-
-<%--<a class="weui-tabbar__item weui-bar__item_on" href="javascript:showXiangGuan();">--%>
-<%--<span style="display: inline-block;position: relative;"></span>--%>
-<%--<img src="/static/images/menpai/xiangguan.png" alt="" class="weui-tabbar__icon">--%>
-
-<%--<p class="weui-tabbar__label" style="color: #9c9c9c">相关连接</p>--%>
-<%--</a>--%>
-
-<%--<!--通讯录-->--%>
-<%--<a class="weui-tabbar__item weui-bar__item_on" href="javascript:showMonitoring();">--%>
-<%--<img src="/static/images/zhengfu2.png" alt="" class="weui-tabbar__icon">--%>
-
-<%--<p class="weui-tabbar__label" style="color: #9c9c9c">政府服务</p>--%>
-<%--</a>--%>
-
-<%--<!--消息-->--%>
-<%--<a class="weui-tabbar__item weui-bar__item_on" href="javascript:showFeedback();">--%>
-<%--<span style="display: inline-block;position: relative;"></span>--%>
-<%--<img src="/static/images/menpai/zhoubian.png" alt="" class="weui-tabbar__icon">--%>
-
-<%--<p class="weui-tabbar__label" style="color: #9c9c9c">周边反馈</p>--%>
-<%--</a>--%>
-<%--</div>--%>
-<%--</div>--%>
-
 
 <script src="https://webapi.amap.com/maps?v=1.3&amp;key=0527fc08a6b9ab7a0d2dacdf50ed20d6&callback=init"></script>
 <!-- UI组件库 1.0 -->
@@ -512,7 +357,7 @@
             return;
         }
         marker = new AMap.Marker({
-            icon: "<%=basepath%>/images/mark_b.png",
+            icon: "<%=basepath%>/static/images/mark_b.png",
             position: [114.356531, 30.5274]
         });
         marker.setMap(map);
